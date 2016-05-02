@@ -17,7 +17,10 @@
 #import "ShippingAddressViewController.h"
 #import "ChooseShippingAddressViewController.h"
 #import "OrderViewController.h"
-#import "loginViewController.h"
+#import "ShippingMethodViewController.h"
+#import "CustomOrderViewController.h"
+#import "AddCustomViewController.h"
+#import "OrderDetailsViewController.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate,ASIHTTPRequestDelegate, UITabBarControllerDelegate>{
     
     UINavigationController *navController;
@@ -28,13 +31,8 @@
     NSString *jsonString;
     
     UITabBarController *tabsController;
-    UIView *spinerView;
-    UIActivityIndicatorView *activityView;
     
 }
--(void)showView;
--(void)hideView;
-
 
 @property (strong, nonatomic) UIWindow *window;
 

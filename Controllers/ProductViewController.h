@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductDetailViewController.h"
+#import "OrderUserViewController.h"
 #import "AppDelegate.h"
 #import "AsyncImageView.h"
-#import "SearchCategoryViewController.h"
 @class AppDelegate;
 @interface ProductViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 {

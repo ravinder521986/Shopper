@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OrderViewController.h"
-@interface CartViewController : UIViewController
+#import "AppDelegate.h"
+#import "MessageViewController.h"
+#import "VisaCheakOutViewController.h"
+#import "CustomOrderViewController.h"
+#import "AddCustomViewController.h"
 
+@class AppDelegate;
+@interface CartViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+{
+    AppDelegate *delObj;
+    UITableView *ShippingTbl;
+    NSMutableArray *TopicArray;
+    UIView* headerView;
+    NSMutableArray *selectedArray;
+    
+}
 @end

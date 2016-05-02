@@ -49,7 +49,7 @@
     plusBtn.adjustsImageWhenHighlighted=NO;
     [plusBtn setBackgroundImage:[UIImage imageNamed:@"plus@2x.png"] forState:UIControlStateNormal];
     plusBtn.frame=CGRectMake(self.view.frame.size.width-50, 35, 34/2, 31/2);
-    [plusBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
+    [plusBtn addTarget:self action:@selector(leftSliderleftSlider) forControlEvents:UIControlEventTouchUpInside];
     [customView1 addSubview:plusBtn];
     
     
@@ -194,7 +194,8 @@
     
     if (indexPath.row==0) {
         
-
+       
+        
         
         UIImageView *RectangleImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Rectangle@2x.png"]];
         RectangleImg.frame=CGRectMake(10,0,self.view.frame.size.width-20,61/2);
@@ -397,7 +398,6 @@
     
     
 }
-
 -(void)leftSlider{
     
     [self.navigationController popViewControllerAnimated:YES];

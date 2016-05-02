@@ -27,7 +27,7 @@
     [self.view addSubview:Img];
 
     
-    delObj=[[UIApplication sharedApplication] delegate];
+    delObj=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     
     UIColor *color = [UIColor colorWithRed:127.0/255.0 green:123.0/255.0 blue:123.0/255.0 alpha:1.0];

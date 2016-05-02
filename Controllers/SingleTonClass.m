@@ -11,7 +11,7 @@
 @implementation SingleTonClass
 
 @synthesize reloadTransaction,status,contactArray,filterArray,sendingArray,paymentStatus,event_Id;
-@synthesize order_colour,order_size,shipping_address;
+
 static SingleTonClass *singletonInstance;
 
 + (SingleTonClass*)getInstance{

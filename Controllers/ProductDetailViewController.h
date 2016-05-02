@@ -10,9 +10,8 @@
 #import "AppDelegate.h"
 #import "AsyncImageView.h"
 #import "OrderUserViewController.h"
-#import "SingleTonClass.h"
 @class AppDelegate;
-@interface ProductDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate>
+@interface ProductDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
     AppDelegate *delObj;
     UITableView *ProductDetailTbl;
@@ -35,7 +34,6 @@
     
     UIView *mainView;
     NSMutableArray *ColorArray;
-    NSMutableDictionary *order_dict;
     
     
    
@@ -43,7 +41,4 @@
     
 }
 @property (nonatomic,strong) NSString *product_id;
-@property (nonatomic,strong) NSMutableDictionary *order_dict;
-
 @end
-

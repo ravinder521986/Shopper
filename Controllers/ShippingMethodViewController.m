@@ -20,7 +20,7 @@
     delObj=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     
-   single=[SingleTonClass getInstance];
+    
     
     
     
@@ -42,6 +42,15 @@
     leftBtn.frame=CGRectMake(10, 30, 24/2, 40/2);
     [leftBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
     [customView1 addSubview:leftBtn];
+    
+    UIButton *plusBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    plusBtn.adjustsImageWhenHighlighted=NO;
+    [plusBtn setTitle:@"EDIT" forState:UIControlStateNormal];
+    plusBtn.frame=CGRectMake(self.view.frame.size.width-60, 30, 60, 31);
+    [plusBtn addTarget:self action:@selector(DoneSlider) forControlEvents:UIControlEventTouchUpInside];
+    [customView1 addSubview:plusBtn];
+    
+    
     
     UILabel *reallbl=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, 20)];
     reallbl.text=@"Shipping Method";
@@ -95,10 +104,55 @@
     
     
 }
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 22)];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
+    headerView.layer.borderColor = [UIColor colorWithWhite:0.5 alpha:1.0].CGColor;
+    headerView.layer.borderWidth = 1.0;
+    UILabel* headerLabel = [[UILabel alloc] init];
+    headerLabel.frame = CGRectMake(5, 2, tableView.frame.size.width - 5, 18);
+    headerLabel.backgroundColor = [UIColor clearColor];
+    headerLabel.textColor = [UIColor whiteColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:16.0];
+    headerLabel.text = @"This is the custom header view";
+    headerLabel.textAlignment = NSTextAlignmentLeft;
+    [headerView addSubview:headerLabel];
+    
+        return headerView;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
-    return 44;
+    if (indexPath.row==0) {
+        
+        return 38.5;
+        
+    }
+    else if (indexPath.row==1){
+        
+        return 50;
+        
+    }
+    else if (indexPath.row==2){
+        
+        return 50;
+        
+    }
+    else if (indexPath.row==3){
+        
+        
+        return 50;
+    }
+    else if (indexPath.row==4){
+        
+        return 50;
+    }
+    else{
+        
+        return 0;
+    }
+    
+    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -116,10 +170,11 @@
         AddToCart.userInteractionEnabled=YES;
         
         UIButton *SubmitBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        SubmitBtn.frame=CGRectMake(0,0, self.view.frame.size.width-20, 38.5);
+        SubmitBtn.frame=CGRectMake(10,0, self.view.frame.size.width-20, 38.5);
         [SubmitBtn setBackgroundColor:[UIColor clearColor]];
         [SubmitBtn setTitle:@"Select Shipping method" forState:UIControlStateNormal];
         [SubmitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [SubmitBtn addTarget:self action:@selector(registerBtn:) forControlEvents:UIControlEventTouchUpInside];
         [AddToCart addSubview:SubmitBtn];
         
         [cell.contentView addSubview:AddToCart];
@@ -132,7 +187,7 @@
         img.image=[UIImage imageNamed:@"category_selected@2x.png"];
         [cell addSubview:img];
 
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,15, self.view.frame.size.width-20, 30)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20, 30)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@" Instant shipping";
         Txtlbl.numberOfLines=1;
@@ -151,7 +206,7 @@
         img.image=[UIImage imageNamed:@"category_selected@2x.png"];
         [cell addSubview:img];
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,15, self.view.frame.size.width-20, 30)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20, 30)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"Same day shipping";
         Txtlbl.numberOfLines=1;
@@ -170,7 +225,7 @@
         img.image=[UIImage imageNamed:@"category_selected@2x.png"];
         [cell addSubview:img];
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,15, self.view.frame.size.width-20, 30)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20, 30)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"Standard Shipping";
         Txtlbl.numberOfLines=1;
@@ -188,7 +243,7 @@
         [cell addSubview:img];
 
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,15, self.view.frame.size.width-20, 30)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20, 30)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"Express Shipping";
         Txtlbl.numberOfLines=1;
@@ -234,16 +289,6 @@
 
        return cell;
     
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    if (indexPath.row==1) {
-        
-        single.shipping_address=@"Instant shipping";
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 -(void)checkBox:(id)sender{
     

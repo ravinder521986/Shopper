@@ -390,7 +390,7 @@
 }
 -(void)RegBtn:(id)sender{
     
-    MainViewController *Register = [[MainViewController alloc]init];
+    RegisterViewController *Register = [[RegisterViewController alloc]init];
     [self.navigationController pushViewController:Register animated:YES];
     
     
@@ -507,7 +507,6 @@
    
     if ([self loginValidation]) {
      
-        [delObj showView];
         
         urlstring = [NSString stringWithFormat:@"%@token",webServiceUrl];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlstring]];
@@ -559,7 +558,7 @@
         [[NSUserDefaults standardUserDefaults]setValue:[dict valueForKey:@"userName"] forKey:@"username"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         
-        [delObj hideView];
+        
  
         
         [delObj createTabbar];

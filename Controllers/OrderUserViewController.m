@@ -13,20 +13,18 @@
 @end
 
 @implementation OrderUserViewController
-@synthesize order_dict;
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     delObj=(AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    FinalDict=[[[NSMutableDictionary alloc]init]mutableCopy];
     
-    NSLog(@"order_dict----%@",order_dict);
-    single=[SingleTonClass getInstance];
-
-    single.shipping_address=nil;
-    single.shipping_address=@"";
+    
+    
+    
+    
     
     
     
@@ -35,8 +33,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
-    
     
     UIView *customView1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     customView1.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"menu_bar_bg@2x.png"]];
@@ -112,7 +108,7 @@
 
 {
     
-    return 6;
+    return 7;
     
     
 }
@@ -125,22 +121,22 @@
     }
     else if (indexPath.row==1){
         
-        return 44;
+        return 30;
         
     }
     else if (indexPath.row==2){
         
-        return 44;
+        return 30;
         
     }
     else if (indexPath.row==3){
         
         
-        return 44;
+        return 30;
     }
     else if (indexPath.row==4){
         
-        return 44;
+        return 30;
     }
     else if (indexPath.row==5){
         
@@ -166,9 +162,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
         
     }
-    
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
     CGFloat x=self.view.frame.size.width/2;
 
     if (indexPath.row==0) {
@@ -180,7 +173,7 @@
         
         UILabel *lbl=[[UILabel alloc] initWithFrame:CGRectMake(x-50,20, 200, 20)];
         lbl.backgroundColor=[UIColor clearColor];
-        lbl.text=[order_dict valueForKey:@"title"];
+        lbl.text=@"Brooklyn T-shirt";
         lbl.numberOfLines=1;
         lbl.textAlignment=NSTextAlignmentLeft;
         lbl.font=[UIFont fontWithName:@"Arial" size:12];
@@ -192,7 +185,7 @@
         
         UILabel *lbl_title=[[UILabel alloc] initWithFrame:CGRectMake(x-50,40, 200, 20)];
         lbl_title.backgroundColor=[UIColor clearColor];
-        lbl_title.text=[order_dict valueForKey:@"brand"];
+        lbl_title.text=@"Abercombie & Fitch ";
         lbl_title.numberOfLines=1;
         lbl_title.textAlignment=NSTextAlignmentLeft;
         lbl_title.font=[UIFont fontWithName:@"Arial" size:12];
@@ -203,9 +196,10 @@
         
 
         
-        Dollerlbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width+220)/2,20, (self.view.frame.size.width-250)/2, 20)];
+        UILabel *Dollerlbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width+220)/2,20, (self.view.frame.size.width-250)/2, 20)];
         Dollerlbl.backgroundColor=[UIColor clearColor];
-        Dollerlbl.text=[NSString stringWithFormat:@"$%@",[order_dict valueForKey:@"price"]];
+      //  Dollerlbl.text=[NSString stringWithFormat:@"$%@",[FinalDict valueForKey:@"price"]];
+        Dollerlbl.text=@"& 200";
         Dollerlbl.numberOfLines=1;
         Dollerlbl.textAlignment=NSTextAlignmentRight;
         Dollerlbl.font=[UIFont fontWithName:@"Arial" size:12];
@@ -224,7 +218,7 @@
         UILabel *lbl1=[[UILabel alloc] initWithFrame:CGRectMake(x+5, 60, 50, 20)];
         lbl1.font = [UIFont fontWithName:@"Roboto-Regular" size:10];
     //    lbl1.text=[[ProductArray objectAtIndex:btn.tag]valueForKey:@"brand"];
-        lbl1.text=single.order_size;
+        lbl1.text=@": M";
         [lbl1 setBackgroundColor:[UIColor clearColor]];
         lbl1.textAlignment=NSTextAlignmentLeft;
         lbl1.textColor=[UIColor blackColor];
@@ -241,7 +235,7 @@
         UILabel *lbl2=[[UILabel alloc] initWithFrame:CGRectMake(x+5, 82, 50, 20)];
         lbl2.font = [UIFont fontWithName:@"Roboto-Regular" size:10];
      //   lbl2.text=[[ProductArray objectAtIndex:btn.tag]valueForKey:@"storeName"];
-        lbl2.text=single.order_colour;
+         lbl2.text=@": black";
         [lbl2 setBackgroundColor:[UIColor clearColor]];
         lbl2.textAlignment=NSTextAlignmentLeft;
         lbl2.textColor=[UIColor blackColor];
@@ -266,7 +260,7 @@
         
         UIImageView *arrowImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow@2x.png"]];
         arrowImg.frame=CGRectMake(x+30, 110, 18/2,10/2);
-        //[cell.contentView addSubview:arrowImg];
+        [cell.contentView addSubview:arrowImg];
         
         UIImageView *AddToCart=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete@2x.png"]];
         AddToCart.frame=CGRectMake(x+x-30,110, 26/2, 33/2);
@@ -280,7 +274,7 @@
         [SubmitBtn addTarget:self action:@selector(registerBtn:) forControlEvents:UIControlEventTouchUpInside];
         [AddToCart addSubview:SubmitBtn];
         
-       // [cell.contentView addSubview:AddToCart];
+        [cell.contentView addSubview:AddToCart];
         
 
         UIImageView *RectangleImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Round_Black@2x.png"]];
@@ -289,7 +283,15 @@
         [cell addSubview:RectangleImg];
 
         
-       
+        
+        UIButton *leftBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        leftBtn.adjustsImageWhenHighlighted=NO;
+        [leftBtn setBackgroundImage:[UIImage imageNamed:@"BackBtn@2x.png"] forState:UIControlStateNormal];
+        leftBtn.frame=CGRectMake(RectangleImg.frame.size.width-30, 9, 24/2, 40/2);
+        [leftBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
+        [RectangleImg addSubview:leftBtn];
+        
+
         UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,9, 200, 20)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"ORDER SUMMARY";
@@ -309,11 +311,12 @@
         SubTotalLbl.textColor=[UIColor redColor];
         [cell.contentView addSubview:SubTotalLbl];
         
-        UILabel *lbl4=[[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width-50, 180, 40, 20)];
+        UILabel *lbl4=[[UILabel alloc] initWithFrame:CGRectMake(x+x-40, 180, 40, 20)];
         lbl4.font = [UIFont fontWithName:@"Roboto-Regular" size:10];
-        lbl4.text=[NSString stringWithFormat:@":%@",Dollerlbl.text];
+        //    lbl4.text=[[ProductArray objectAtIndex:btn.tag]valueForKey:@"brand"];
+        lbl4.text=@": &54:00";
         [lbl4 setBackgroundColor:[UIColor clearColor]];
-        lbl4.textAlignment=NSTextAlignmentRight;
+        lbl4.textAlignment=NSTextAlignmentLeft;
         lbl4.textColor=[UIColor blackColor];
         [cell.contentView addSubview:lbl4];
         
@@ -325,11 +328,12 @@
         Taxlbl.textColor=[UIColor redColor];
         [cell.contentView addSubview:Taxlbl];
         
-        UILabel *lbl5=[[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width-50, 202, 40, 20)];
+        UILabel *lbl5=[[UILabel alloc] initWithFrame:CGRectMake(x+x-40, 202, 40, 20)];
         lbl5.font = [UIFont fontWithName:@"Roboto-Regular" size:10];
-        lbl5.text=@": $30";
+        //   lbl5.text=[[ProductArray objectAtIndex:btn.tag]valueForKey:@"storeName"];
+        lbl5.text=@": &30:00";
         [lbl5 setBackgroundColor:[UIColor clearColor]];
-        lbl5.textAlignment=NSTextAlignmentRight;
+        lbl5.textAlignment=NSTextAlignmentLeft;
         lbl5.textColor=[UIColor blackColor];
         [cell.contentView addSubview:lbl5];
         
@@ -341,18 +345,12 @@
         Shippinglbl.textColor=[UIColor redColor];
         [cell.contentView addSubview:Shippinglbl];
         
-        int totalCost=[[NSString stringWithFormat:@"%@",[Dollerlbl.text stringByReplacingOccurrencesOfString:@"$" withString:@""]] intValue];
-        
-        int chargeCost=30;
-        
-        int totolFinal=totalCost+chargeCost;
-
-        
-        UILabel *lbl6=[[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width-50, 224, 40, 20)];
+        UILabel *lbl6=[[UILabel alloc] initWithFrame:CGRectMake(x+x-40, 224, 40, 20)];
         lbl6.font = [UIFont fontWithName:@"Roboto-Regular" size:10];
-        lbl6.text=[NSString stringWithFormat:@":$%d",totolFinal];
+        lbl6.text=@": &25:00";
+        // lbl6.text=[NSString stringWithFormat:@"$%@",[[ProductArray objectAtIndex:btn.tag]valueForKey:@"price"]];
         [lbl6 setBackgroundColor:[UIColor clearColor]];
-        lbl6.textAlignment=NSTextAlignmentRight;
+        lbl6.textAlignment=NSTextAlignmentLeft;
         lbl6.textColor=[UIColor blackColor];
         [cell.contentView addSubview:lbl6];
         
@@ -363,7 +361,7 @@
     }
     else if (indexPath.row==1){
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,15, 100, 25)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,5, 100, 25)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"PRIVANCY";
         Txtlbl.numberOfLines=1;
@@ -378,7 +376,7 @@
         [cell.contentView addSubview:PiKImg];
         
         UIImageView *RectangleImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider-.png"]];
-        RectangleImg.frame=CGRectMake(0,43, self.view.frame.size.width ,1);
+        RectangleImg.frame=CGRectMake(0,29, self.view.frame.size.width ,2/2);
         RectangleImg.backgroundColor=[UIColor redColor];
         [cell.contentView addSubview:RectangleImg];
 
@@ -386,7 +384,7 @@
     }
     else if (indexPath.row==2){
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,15, 100, 25)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,5, 100, 25)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"PAYMENT CARD";
         Txtlbl.numberOfLines=1;
@@ -403,14 +401,14 @@
 
         
         UIImageView *RectangleImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider-.png"]];
-        RectangleImg.frame=CGRectMake(0,43, self.view.frame.size.width ,1);
+        RectangleImg.frame=CGRectMake(0,29, self.view.frame.size.width ,2/2);
         RectangleImg.backgroundColor=[UIColor redColor];
         [cell.contentView addSubview:RectangleImg];
   
     }
     else if (indexPath.row==3){
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,15, 100, 25)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,5, 100, 25)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"SHIPPING METHED";
         Txtlbl.numberOfLines=1;
@@ -426,7 +424,7 @@
         [cell.contentView addSubview:PiKImg];
         
         UIImageView *RectangleImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider-.png"]];
-        RectangleImg.frame=CGRectMake(0,43, self.view.frame.size.width ,1);
+        RectangleImg.frame=CGRectMake(0,29, self.view.frame.size.width ,2/2);
         RectangleImg.backgroundColor=[UIColor redColor];
         [cell.contentView addSubview:RectangleImg];
 
@@ -435,33 +433,23 @@
     else if (indexPath.row==4){
         
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,10, 150, 25)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(20,5, 100, 25)];
         Txtlbl.backgroundColor=[UIColor clearColor];
+        Txtlbl.text=@"SHIPPING ADDRESS";
         Txtlbl.numberOfLines=1;
         Txtlbl.textAlignment=NSTextAlignmentLeft;
         Txtlbl.font=[UIFont fontWithName:@"Roboto-Regular" size:11];
         Txtlbl.textColor=[UIColor blackColor];
-        
-        
-        NSLog(@"ADDRESS------%@",single.shipping_address);
-        
-        if ([single.shipping_address isEqualToString:@""]) {
-            Txtlbl.text=@"SHIPPING ADDRESS";
-
-        }
-        else{
-            Txtlbl.text=single.shipping_address;
-
-        }
+        [Txtlbl sizeToFit];
         [cell.contentView addSubview:Txtlbl];
-
+        
         
         UIImageView *PiKImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ArrowBtn@2x.png"]];
         PiKImg.frame=CGRectMake(x+x-20, 9, 13/2,21/2);
         [cell.contentView addSubview:PiKImg];
         
         UIImageView *RectangleImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider-.png"]];
-        RectangleImg.frame=CGRectMake(0,43, self.view.frame.size.width ,1);
+        RectangleImg.frame=CGRectMake(0,29, self.view.frame.size.width ,2/2);
         RectangleImg.backgroundColor=[UIColor redColor];
         [cell.contentView addSubview:RectangleImg];
         
@@ -470,7 +458,7 @@
         
         
     }
-    else if (indexPath.row==6){
+    else if (indexPath.row==5){
         
         
         {
@@ -566,7 +554,7 @@
 
         }
     }
-    else if (indexPath.row==5){
+    else if (indexPath.row==6){
         
         UIImageView *AddToCart=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddCard@2x.png"]];
         AddToCart.frame=CGRectMake((self.view.frame.size.width-260.5)/2,28.5, 521/2, 86/2);
@@ -577,7 +565,7 @@
         [SubmitBtn setBackgroundColor:[UIColor clearColor]];
         [SubmitBtn setTitle:@"SUBMIT" forState:UIControlStateNormal];
         [SubmitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [SubmitBtn addTarget:self action:@selector(orderBtn) forControlEvents:UIControlEventTouchUpInside];
+        [SubmitBtn addTarget:self action:@selector(registerBtn) forControlEvents:UIControlEventTouchUpInside];
         [AddToCart addSubview:SubmitBtn];
         
         [cell.contentView addSubview:AddToCart];
@@ -589,14 +577,40 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    if (indexPath.row==4) {
+    if (indexPath.row==0) {
         
-        ShippingMethodViewController *address=[[ShippingMethodViewController alloc] init];
-        [self.navigationController pushViewController:address animated:YES];
     }
-    
-    
+     else if (indexPath.row==1){
+         
+         CartViewController *Payment=[[CartViewController alloc]init];
+         [self.navigationController pushViewController:Payment animated:YES];
+    }
+     else if (indexPath.row==2){
+        
+         PaymentViewController *Payment=[[PaymentViewController alloc]init];
+         [self.navigationController pushViewController:Payment animated:YES];
+         
+
+
+    }
+     else if (indexPath.row==3){
+         
+         ShippingMethodViewController *Payment=[[ShippingMethodViewController alloc]init];
+         [self.navigationController pushViewController:Payment animated:YES];
+         
+
+     }
+
+     else if (indexPath.row==4){
+         
+        
+         
+     }
+
+     else{
+         
+         
+     }
 }
 
 -(void)leftSlider{
@@ -634,30 +648,7 @@
     
     return YES;
 }
--(void)orderBtn{
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Checkout" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(orderResponse:) name:@"Checkout" object:nil];
-    NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
-    [delObj PostWebServer:dict type:@"Checkout"];
-    
 
-    
-}
--(void)orderResponse:(NSNotification *)dict{
-    
-    
-    
-    NSDictionary *dictvalue=[dict userInfo];
-    
-    NSLog(@"DICT VALUE-----%@",dictvalue);
-    
-    
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Checkout is successful" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    
-    [alert show];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 - (void)didReceiveMemoryWarning {

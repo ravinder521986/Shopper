@@ -1,23 +1,23 @@
 //
-//  ShippingAddressViewController.h
+//  AddCustomViewController.h
 //  Project
 //
-//  Created by Possibility Solutions on 04/04/16.
+//  Created by Possibility Solutions on 28/04/16.
 //  Copyright © 2016 MAC. All rights reserved.
 //
 #import <UIKit/UIKit.h>
 #import "PaymentViewController.h"
 #import "AppDelegate.h"
 @class AppDelegate;
-@interface ShippingAddressViewController : UIViewController <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface AddCustomViewController : UIViewController <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIScrollViewDelegate>
 {
     AppDelegate *delObj;
     UIView *mainView;
     NSMutableDictionary *FinalDict;
     
-    UITextField *FirstNameTxt,*CreditCardNoTxt,*YearTxt,*CountryTxt,*StateTxt,*LastNameTxt,*CityTxt,*CodeTxt,*AddLineTxt,*AddLine2Txt,*TelephoneTxt;
+    UITextField *StoreWebTxt,*StoreNameTxt,*ColourTxt,*SizeTxt,*WebsiteTxt,*PriceTxt,*CodeTxt,*ProductNameTxt,*ProductTxt;
     
-    
+    UIScrollView *ScrollView;
     
     CGRect pickerFrame;
     CGRect toolbarFrame ;
@@ -32,9 +32,9 @@
     
     NSString *StrValue;
     
-    UIButton *CountryBtn;
-    UIButton *StateBtn;
-    UIButton *CityBtn;
+    UIButton *ColourButton;
+    UIButton *SizeButton;
+    UIButton *PriceButton;
     
     
     UIButton *AddToCartBtn;

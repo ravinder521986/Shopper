@@ -50,7 +50,7 @@
     [ColorArray addObject:@"pink"];
 
     
-    transactionTbl=[[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height-149) style:UITableViewStylePlain];
+    transactionTbl=[[UITableView alloc] initWithFrame:CGRectMake(0, 110, self.view.frame.size.width, self.view.frame.size.height-159) style:UITableViewStylePlain];
     transactionTbl.showsVerticalScrollIndicator=YES;
     transactionTbl.showsHorizontalScrollIndicator=NO;
     transactionTbl.showsVerticalScrollIndicator=NO;
@@ -124,7 +124,7 @@
     searchBtn.adjustsImageWhenHighlighted=NO;
     [searchBtn setBackgroundImage:[UIImage imageNamed:@"search@2x.png"] forState:UIControlStateNormal];
     searchBtn.frame=CGRectMake(self.view.frame.size.width-20, 35, 30/2, 30/2);
-    [searchBtn addTarget:self action:@selector(searchBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+   // [searchBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
     [customView1 addSubview:searchBtn];
     
     UILabel *reallbl=[[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.view.frame.size.width, 20)];
@@ -135,11 +135,6 @@
     [customView1 addSubview:reallbl];
     [self.view addSubview:customView1];
     
-    
-}
--(void)searchBtnPressed{
-    SearchCategoryViewController *search=[[SearchCategoryViewController alloc] init];
-    [self.navigationController pushViewController:search animated:YES];
     
 }
 -(void)buttonCategory{
@@ -190,7 +185,7 @@
             else{
                 
                 i=[ProductArray count]/2;
-               // i=i+1;
+                i=i+1;
                 
                 return i;
                 
@@ -227,7 +222,7 @@
                 
             {
                 
-                return 320;
+                return 270;
                 
             }
             else{
@@ -292,7 +287,7 @@
                                 
                                 
                                 UIImageView *imgLogo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Box.png"]];
-                                imgLogo.frame=CGRectMake(10,20, 172, 290);
+                                imgLogo.frame=CGRectMake(10,20, 172, 235);
                                 imgLogo.userInteractionEnabled=YES;
                                 [cell.contentView addSubview:imgLogo];
                                 
@@ -322,7 +317,7 @@
                                 
                                 if ([images count]) {
                                     
-                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 162, 240)];
+                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 162, 185)];
                                     imageView.contentMode=UIViewContentModeScaleAspectFill;
                                     imageView.clipsToBounds=YES;
                                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
@@ -331,7 +326,7 @@
                                     
                                 }
                                 else{
-                                    UIImageView *img=[[UIImageView alloc] initWithFrame:CGRectMake(15, 25, 180, 240)];
+                                    UIImageView *img=[[UIImageView alloc] initWithFrame:CGRectMake(15, 25, 180, 185)];
                                     img.image=[UIImage imageNamed:@"image.png"];
                                     [cell.contentView addSubview:img];
                                     
@@ -347,19 +342,19 @@
                                 
                                 
                                 
-                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+153, 275, 26/2, 23/2)];
+                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+153, 220, 26/2, 23/2)];
                                 imgtime.image=[UIImage imageNamed:@"Forma-143.png"];
                                 [cell.contentView addSubview:imgtime];
                                 
                                 
-                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 270, 150, 20)];
-                                CategoryLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
+                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 215, 150, 20)];
+                                CategoryLbl.text=@"Skull with snake";
                                 CategoryLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 CategoryLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
                                 CategoryLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:CategoryLbl];
                                 
-                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+130, 270, 150, 20)];
+                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+130, 215, 150, 20)];
                                 NumberLbl.text=@"412";
                                 NumberLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 NumberLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
@@ -367,15 +362,15 @@
                                 [cell.contentView addSubview:NumberLbl];
                                 
                                 
-                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 290, 150, 20)];
-                                TxtLbl.text=store_name;
+                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 235, 150, 20)];
+                                TxtLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
                                 TxtLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 TxtLbl.textColor=[UIColor colorWithRed:221.0/255.0 green:43.0/255.0 blue:36.0/255.0 alpha:1.0];
                                 TxtLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:TxtLbl];
                                 
                                 
-                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-70, 290, 35, 20)];
+                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-70, 235, 35, 20)];
                                 price.text=[NSString stringWithFormat:@"$%@",[[ProductArray objectAtIndex:i] valueForKey:@"price"]];
                                 price.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 price.textColor=[UIColor redColor];
@@ -417,7 +412,7 @@
                                 
                                 
                                 UIImageView *imgLogo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Box.png"]];
-                                imgLogo.frame=CGRectMake(x,20, 172, 290);
+                                imgLogo.frame=CGRectMake(x,20, 172, 235);
                                 [cell.contentView addSubview:imgLogo];
                                 
                                 
@@ -439,7 +434,7 @@
                                 
                                 if ([images count]) {
                                     
-                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 162, 240)];
+                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 162, 185)];
                                     imageView.contentMode=UIViewContentModeScaleAspectFill;
                                     imageView.clipsToBounds=YES;
                                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
@@ -448,7 +443,7 @@
                                     
                                 }
                                 else{
-                                    UIImageView *img=[[UIImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 240)];
+                                    UIImageView *img=[[UIImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 185)];
                                     img.image=[UIImage imageNamed:@"image.png"];
                                     [cell.contentView addSubview:img];
                                     
@@ -456,35 +451,35 @@
                                 
                                 
                                 
-                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+153, 275, 26/2, 23/2)];
+                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+153, 220, 26/2, 23/2)];
                                 imgtime.image=[UIImage imageNamed:@"Forma-143.png"];
                                 [cell.contentView addSubview:imgtime];
                                 
                                 
                                 
-                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 270, 150, 20)];
-                                CategoryLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
+                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 215, 150, 20)];
+                                CategoryLbl.text=@"Skull with snake";
                                 CategoryLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 CategoryLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
                                 CategoryLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:CategoryLbl];
                                 
-                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+130, 270, 150, 20)];
+                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+130, 215, 150, 20)];
                                 NumberLbl.text=@"412";
                                 NumberLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 NumberLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
                                 NumberLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:NumberLbl];
                                 
-                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 290, 150, 20)];
-                                TxtLbl.text=store_name;
+                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 235, 150, 20)];
+                                TxtLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
                                 TxtLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 TxtLbl.textColor=[UIColor colorWithRed:221.0/255.0 green:43.0/255.0 blue:36.0/255.0 alpha:1.0];
                                 TxtLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:TxtLbl];
                                 
                                 
-                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-70, 290, 35, 20)];
+                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-70, 235, 35, 20)];
                                 price.text=[NSString stringWithFormat:@"$%@",[[ProductArray objectAtIndex:i] valueForKey:@"price"]];
                                 price.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 price.textColor=[UIColor redColor];
@@ -532,13 +527,13 @@
                                 
                                 
                                 UIImageView *imgLogo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Box.png"]];
-                                imgLogo.frame=CGRectMake(10,20, 190, 290);
+                                imgLogo.frame=CGRectMake(10,20, 190, 235);
                                 imgLogo.userInteractionEnabled=YES;
                                 [cell.contentView addSubview:imgLogo];
                                 
                                 
                                 UIButton *readMore=[UIButton buttonWithType:UIButtonTypeCustom];
-                                readMore.frame=CGRectMake(10,20, 190, 290);
+                                readMore.frame=CGRectMake(10,20, 190, 235);
                                 readMore.showsTouchWhenHighlighted=YES;
                                 readMore.titleLabel.font=[UIFont fontWithName:@"Arial" size:13];
                                 [readMore setTitleColor:[UIColor blueColor ] forState:UIControlStateNormal];
@@ -562,7 +557,7 @@
                                 
                                 if ([images count]) {
                                     
-                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 240)];
+                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 185)];
                                     imageView.contentMode=UIViewContentModeScaleAspectFill;
                                     imageView.clipsToBounds=YES;
                                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
@@ -587,19 +582,19 @@
                                 
                                 
                                 
-                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+173, 275, 26/2, 23/2)];
+                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+173, 220, 26/2, 23/2)];
                                 imgtime.image=[UIImage imageNamed:@"Forma-143.png"];
                                 [cell.contentView addSubview:imgtime];
                                 
                                 
-                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 270, 150, 20)];
-                                CategoryLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
+                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 215, 150, 20)];
+                                CategoryLbl.text=@"Skull with snake";
                                 CategoryLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 CategoryLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
                                 CategoryLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:CategoryLbl];
                                 
-                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+150, 270, 150, 20)];
+                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+150, 215, 150, 20)];
                                 NumberLbl.text=@"412";
                                 NumberLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 NumberLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
@@ -607,22 +602,35 @@
                                 [cell.contentView addSubview:NumberLbl];
                                 
                                 
-                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 290, 150, 20)];
-                                TxtLbl.text=store_name;
+                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(15, 235, 150, 20)];
+                                TxtLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
                                 TxtLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 TxtLbl.textColor=[UIColor colorWithRed:221.0/255.0 green:43.0/255.0 blue:36.0/255.0 alpha:1.0];
                                 TxtLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:TxtLbl];
                                 
                                 
-                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-50, 290, 35, 20)];
+                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-50, 235, 35, 20)];
                                 price.text=[NSString stringWithFormat:@"$%@",[[ProductArray objectAtIndex:i] valueForKey:@"price"]];
                                 price.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 price.textColor=[UIColor redColor];
                                 price.textAlignment=NSTextAlignmentRight;
                                 price.backgroundColor=[UIColor clearColor];
                                 [cell.contentView addSubview:price];
-                     
+                                
+
+                                
+//                                UIButton *readMore=[UIButton buttonWithType:UIButtonTypeCustom];
+//                                readMore.frame=CGRectMake(x+113, 190, 141/2, 36/2);
+//                                [readMore setImage:[UIImage imageNamed:@"buy.png"] forState:UIControlStateNormal];
+//                                readMore.showsTouchWhenHighlighted=YES;
+//                                readMore.titleLabel.font=[UIFont fontWithName:@"Arial" size:13];
+//                                [readMore setTitleColor:[UIColor blueColor ] forState:UIControlStateNormal];
+//                                readMore.tag=i;
+//                                [readMore addTarget:self action:@selector(sendAnswer:) forControlEvents:UIControlEventTouchUpInside];
+//                                [cell.contentView addSubview:readMore];
+//                                
+                    
                                 i=i+1;
                                 x=x+205;
                             }
@@ -644,7 +652,7 @@
                                 
                                 
                                 UIImageView *imgLogo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Box.png"]];
-                                imgLogo.frame=CGRectMake(x,20, 190, 290);
+                                imgLogo.frame=CGRectMake(x,20, 190, 235);
                                 [cell.contentView addSubview:imgLogo];
                                 
                                 
@@ -666,7 +674,7 @@
                                 
                                 if ([images count]) {
                                     
-                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 240)];
+                                    AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 185)];
                                     imageView.contentMode=UIViewContentModeScaleAspectFill;
                                     imageView.clipsToBounds=YES;
                                     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
@@ -675,7 +683,7 @@
                                     
                                 }
                                 else{
-                                    UIImageView *img=[[UIImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 240)];
+                                    UIImageView *img=[[UIImageView alloc] initWithFrame:CGRectMake(x+5, 25, 180, 185)];
                                     img.image=[UIImage imageNamed:@"image.png"];
                                     [cell.contentView addSubview:img];
                                     
@@ -683,41 +691,54 @@
                                 
                                 
                                 
-                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+173, 275, 26/2, 23/2)];
+                                UIImageView *imgtime=[[UIImageView alloc] initWithFrame:CGRectMake(x+173, 220, 26/2, 23/2)];
                                 imgtime.image=[UIImage imageNamed:@"Forma-143.png"];
                                 [cell.contentView addSubview:imgtime];
                                 
                                 
                                 
-                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 270, 150, 20)];
-                                CategoryLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
+                                UILabel *CategoryLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 215, 150, 20)];
+                                CategoryLbl.text=@"Skull with snake";
                                 CategoryLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 CategoryLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
                                 CategoryLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:CategoryLbl];
                                 
-                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+150, 270, 150, 20)];
+                                UILabel *NumberLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+150, 215, 150, 20)];
                                 NumberLbl.text=@"412";
                                 NumberLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 NumberLbl.textColor=[UIColor colorWithRed:110.0/255.0 green:110.0/255.0 blue:109.0/255.0 alpha:1.0];
                                 NumberLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:NumberLbl];
                                 
-                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 290, 150, 20)];
-                                TxtLbl.text=store_name;
+                                UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(x+10, 235, 150, 20)];
+                                TxtLbl.text=[[ProductArray objectAtIndex:i] valueForKey:@"brand"];
                                 TxtLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 TxtLbl.textColor=[UIColor colorWithRed:221.0/255.0 green:43.0/255.0 blue:36.0/255.0 alpha:1.0];
                                 TxtLbl.textAlignment=NSTextAlignmentLeft;
                                 [cell.contentView addSubview:TxtLbl];
                                 
                                 
-                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-50, 290, 35, 20)];
+                                UILabel *price=[[UILabel alloc] initWithFrame:CGRectMake(x+200-50, 235, 35, 20)];
                                 price.text=[NSString stringWithFormat:@"$%@",[[ProductArray objectAtIndex:i] valueForKey:@"price"]];
                                 price.font=[UIFont fontWithName:@"Roboto-Regular" size:10];
                                 price.textColor=[UIColor redColor];
                                 price.textAlignment=NSTextAlignmentRight;
                                 price.backgroundColor=[UIColor clearColor];
                                 [cell.contentView addSubview:price];
+                                
+                                
+                                
+                                
+                                
+//                                UIButton *readMore=[UIButton buttonWithType:UIButtonTypeCustom];
+//                                readMore.frame=CGRectMake(x+113, 190, 141/2, 36/2);
+//                                [readMore setImage:[UIImage imageNamed:@"buy.png"] forState:UIControlStateNormal];                                          readMore.showsTouchWhenHighlighted=YES;
+//                                readMore.titleLabel.font=[UIFont fontWithName:@"Arial" size:13];
+//                                [readMore setTitleColor:[UIColor blueColor ] forState:UIControlStateNormal];
+//                                readMore.tag=i;
+//                                [readMore addTarget:self action:@selector(sendAnswer:) forControlEvents:UIControlEventTouchUpInside];
+//                                [cell.contentView addSubview:readMore];
                                 
                                 i=i+1;
                                 x=x+205;
@@ -767,6 +788,13 @@
                             imgLogo.frame=CGRectMake(10,20, 299/2, 390/2);
                             [cell.contentView addSubview:imgLogo];
                         
+                            
+                            
+                            //UIImageView *img=[[UIImageView alloc] initWithFrame:CGRectMake(x+5, 25, 276/2, 283/2)];
+                           // img.image=[UIImage imageNamed:@"image.png"];
+                            //[cell.contentView addSubview:img];
+                            
+                            
                             
                             NSMutableArray *images=[[ProductArray objectAtIndex:i] valueForKey:@"images"];
                             
@@ -1213,7 +1241,7 @@
     
     AddItemBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     AddItemBtn.frame=CGRectMake(10,90, 192/2, 63/2);
-    [AddItemBtn addTarget:self action:@selector(CancelBtn) forControlEvents:UIControlEventTouchUpInside];
+    [AddItemBtn addTarget:self action:@selector(CheckOutBtn) forControlEvents:UIControlEventTouchUpInside];
     [ImgIcon addSubview:AddItemBtn];
     
     
@@ -1234,7 +1262,12 @@
     
 
 }
-
+-(void)CheckOutBtn{
+    
+    OrderUserViewController *OrderUser=[[OrderUserViewController alloc]init];
+    [self.navigationController pushViewController:OrderUser animated:YES];
+    
+}
 -(void)CancelBtn{
     
     [mainView removeFromSuperview];

@@ -1,19 +1,22 @@
 //
-//  ShippingAddressViewController.h
+//  CustomOrderViewController.h
 //  Project
 //
-//  Created by Possibility Solutions on 04/04/16.
+//  Created by Possibility Solutions on 28/04/16.
 //  Copyright © 2016 MAC. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "PaymentViewController.h"
 #import "AppDelegate.h"
 @class AppDelegate;
-@interface ShippingAddressViewController : UIViewController <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface CustomOrderViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 {
     AppDelegate *delObj;
+    UITableView *CustomTbl;
+    NSMutableArray *CustomArray;
+    UIView* headerView;
     UIView *mainView;
-    NSMutableDictionary *FinalDict;
+    NSMutableArray *selectedArray;
+    
     
     UITextField *FirstNameTxt,*CreditCardNoTxt,*YearTxt,*CountryTxt,*StateTxt,*LastNameTxt,*CityTxt,*CodeTxt,*AddLineTxt,*AddLine2Txt,*TelephoneTxt;
     
@@ -38,11 +41,8 @@
     
     
     UIButton *AddToCartBtn;
-    
-    
-}
-@property (strong, nonatomic) NSMutableDictionary *FinalDict;
-@property (strong, nonatomic)  NSString *StrValue;
 
+}
+@property (strong, nonatomic)  NSString *StrValue;
 
 @end
