@@ -12,7 +12,6 @@
 		0405C8721CC006970050C4C7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0405C86D1CC006970050C4C7 /* Default-568h@2x.png */; };
 		0405C8731CC006970050C4C7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0405C86E1CC006970050C4C7 /* Default.png */; };
 		0405C8741CC006970050C4C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0405C86F1CC006970050C4C7 /* Default@2x.png */; };
-		04253E841CD728670004ECA0 /* ravinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04253E831CD728670004ECA0 /* ravinderViewController.m */; };
 		043861531CBBC84B007F0710 /* transprent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 043861521CBBC84B007F0710 /* transprent@2x.png */; };
 		04899C8B1CB692590060BFD3 /* login_email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04899C8A1CB692590060BFD3 /* login_email@2x.png */; };
 		04A3F8E41B50D4CA0050E743 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3F8E31B50D4CA0050E743 /* main.m */; };
@@ -203,8 +202,6 @@
 		0405C86D1CC006970050C4C7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0405C86E1CC006970050C4C7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0405C86F1CC006970050C4C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		04253E821CD728670004ECA0 /* ravinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ravinderViewController.h; sourceTree = "<group>"; };
-		04253E831CD728670004ECA0 /* ravinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ravinderViewController.m; sourceTree = "<group>"; };
 		043861521CBBC84B007F0710 /* transprent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transprent@2x.png"; sourceTree = "<group>"; };
 		04899C8A1CB692590060BFD3 /* login_email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_email@2x.png"; sourceTree = "<group>"; };
 		04A3F8DE1B50D4CA0050E743 /* Shoppur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppur.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -479,8 +476,6 @@
 				5D92C85A1C50FFAC0070B386 /* Base64 */,
 				043D0C8C1C50E96C00FA8F3C /* Register */,
 				043D0C8B1C50E95F00FA8F3C /* Login */,
-				04253E821CD728670004ECA0 /* ravinderViewController.h */,
-				04253E831CD728670004ECA0 /* ravinderViewController.m */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -1172,7 +1167,6 @@
 				04BDE6811CC1177200FD6B50 /* AddCartViewController.m in Sources */,
 				5D690D671CD3892600C6DDF9 /* OrderDetailsViewController.m in Sources */,
 				5D2D899D1C630EAE0041D5AB /* SingleTonClass.m in Sources */,
-				04253E841CD728670004ECA0 /* ravinderViewController.m in Sources */,
 				04A3F9361B50D8F10050E743 /* MainViewController.m in Sources */,
 				5D9AEE4B1CCE42CB002660BB /* OrderUserViewController.m in Sources */,
 				5D0EEE3F1CD1ED18004CAA7C /* AddCustomViewController.m in Sources */,
