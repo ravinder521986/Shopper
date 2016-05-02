@@ -15,7 +15,6 @@
 		04253E841CD728670004ECA0 /* ravinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04253E831CD728670004ECA0 /* ravinderViewController.m */; };
 		043861531CBBC84B007F0710 /* transprent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 043861521CBBC84B007F0710 /* transprent@2x.png */; };
 		04899C8B1CB692590060BFD3 /* login_email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04899C8A1CB692590060BFD3 /* login_email@2x.png */; };
-		0489B8EA1CD72D3B0025ED90 /* mamtaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0489B8E91CD72D3B0025ED90 /* mamtaViewController.m */; };
 		04A3F8E41B50D4CA0050E743 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3F8E31B50D4CA0050E743 /* main.m */; };
 		04A3F8E71B50D4CA0050E743 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3F8E61B50D4CA0050E743 /* AppDelegate.m */; };
 		04A3F8EA1B50D4CA0050E743 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3F8E91B50D4CA0050E743 /* ViewController.m */; };
@@ -208,8 +207,6 @@
 		04253E831CD728670004ECA0 /* ravinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ravinderViewController.m; sourceTree = "<group>"; };
 		043861521CBBC84B007F0710 /* transprent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transprent@2x.png"; sourceTree = "<group>"; };
 		04899C8A1CB692590060BFD3 /* login_email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_email@2x.png"; sourceTree = "<group>"; };
-		0489B8E81CD72D3B0025ED90 /* mamtaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mamtaViewController.h; sourceTree = "<group>"; };
-		0489B8E91CD72D3B0025ED90 /* mamtaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mamtaViewController.m; sourceTree = "<group>"; };
 		04A3F8DE1B50D4CA0050E743 /* Shoppur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A3F8E21B50D4CA0050E743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04A3F8E31B50D4CA0050E743 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -484,8 +481,6 @@
 				043D0C8B1C50E95F00FA8F3C /* Login */,
 				04253E821CD728670004ECA0 /* ravinderViewController.h */,
 				04253E831CD728670004ECA0 /* ravinderViewController.m */,
-				0489B8E81CD72D3B0025ED90 /* mamtaViewController.h */,
-				0489B8E91CD72D3B0025ED90 /* mamtaViewController.m */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -1198,7 +1193,6 @@
 				5D807CE81C64831A00479C18 /* HomeActivityViewController.m in Sources */,
 				5DE849101CAEA17300CFD7C7 /* PaymentViewController.m in Sources */,
 				04A3F9231B50D7AC0050E743 /* ASIDownloadCache.m in Sources */,
-				0489B8EA1CD72D3B0025ED90 /* mamtaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
