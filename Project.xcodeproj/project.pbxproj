@@ -155,6 +155,7 @@
 		5DCE15BE1C6F4DDF00D80CB7 /* image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DCE15B91C6F4DDF00D80CB7 /* image@2x.png */; };
 		5DCE15C01C6F4E0F00D80CB7 /* Rectangle-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DCE15BF1C6F4E0F00D80CB7 /* Rectangle-29@2x.png */; };
 		5DCE270F1C60DD4A00968BB8 /* ForgetPswrdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCE270E1C60DD4A00968BB8 /* ForgetPswrdViewController.m */; };
+		5DE0F7311CD7279E006B5990 /* skumarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE0F7301CD7279E006B5990 /* skumarViewController.m */; };
 		5DE6C7091CCF946900A9842B /* ArrowBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6C7081CCF946900A9842B /* ArrowBtn@2x.png */; };
 		5DE849101CAEA17300CFD7C7 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8490F1CAEA17300CFD7C7 /* PaymentViewController.m */; };
 		5DE849171CAEA36100CFD7C7 /* accept@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE849121CAEA36100CFD7C7 /* accept@2x.png */; };
@@ -393,6 +394,8 @@
 		5DCE15BF1C6F4E0F00D80CB7 /* Rectangle-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle-29@2x.png"; sourceTree = "<group>"; };
 		5DCE270D1C60DD4A00968BB8 /* ForgetPswrdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPswrdViewController.h; sourceTree = "<group>"; };
 		5DCE270E1C60DD4A00968BB8 /* ForgetPswrdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPswrdViewController.m; sourceTree = "<group>"; };
+		5DE0F72F1CD7279E006B5990 /* skumarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skumarViewController.h; sourceTree = "<group>"; };
+		5DE0F7301CD7279E006B5990 /* skumarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = skumarViewController.m; sourceTree = "<group>"; };
 		5DE6C7081CCF946900A9842B /* ArrowBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArrowBtn@2x.png"; sourceTree = "<group>"; };
 		5DE8490E1CAEA17300CFD7C7 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		5DE8490F1CAEA17300CFD7C7 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
@@ -563,6 +566,8 @@
 				04A3F8E91B50D4CA0050E743 /* ViewController.m */,
 				04A3F8EE1B50D4CA0050E743 /* Images.xcassets */,
 				04A3F8E11B50D4CA0050E743 /* Supporting Files */,
+				5DE0F72F1CD7279E006B5990 /* skumarViewController.h */,
+				5DE0F7301CD7279E006B5990 /* skumarViewController.m */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -1173,6 +1178,7 @@
 				04A3F8E41B50D4CA0050E743 /* main.m in Sources */,
 				04A3F9271B50D7AC0050E743 /* ASINetworkQueue.m in Sources */,
 				5D90DAD21CB295C30031A49C /* ChooseShippingAddressViewController.m in Sources */,
+				5DE0F7311CD7279E006B5990 /* skumarViewController.m in Sources */,
 				04A3F9221B50D7AC0050E743 /* ASIDataDecompressor.m in Sources */,
 				04A3F9281B50D7AC0050E743 /* Reachability.m in Sources */,
 				5DEC31C51CD0AF55001A7E3B /* ShippingMethodViewController.m in Sources */,
