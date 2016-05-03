@@ -23,7 +23,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    MainViewController *objectiphone=[[MainViewController alloc] init];
+    loginViewController *objectiphone=[[loginViewController alloc] init];
     navController=[[UINavigationController alloc]initWithRootViewController:objectiphone];
     navController.navigationBar.hidden=YES;
     self.window.rootViewController = navController;
@@ -178,77 +178,87 @@
         NSString *strurl=[NSString stringWithFormat:@"%@api/Checkout",webServiceUrl];
         NSURL *url=[NSURL URLWithString:strurl];
         serverRequest=[ASIFormDataRequest requestWithURL:url];
-        [serverRequest setPostValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"userid"] forKey:@"userid"];
+        [serverRequest addRequestHeader:@"Authorization" value:[NSString stringWithFormat:@"bearer %@",[[NSUserDefaults standardUserDefaults]valueForKey:@"userid"]]];
 
         [serverRequest setRequestMethod:@"POST"];
         [serverRequest setDelegate:self];
         [serverRequest startAsynchronous];
     }
-
+    
+    else if ([webServive isEqualToString:@"Category"]){
+        
+        NSString *strurl=[NSString stringWithFormat:@"%@api/Products/Category/%@/%@",webServiceUrl,[dict valueForKey:@"category"],@"1"];
+        NSURL *url=[NSURL URLWithString:strurl];
+        NSLog(@"%@",url);
+        serverRequest=[ASIFormDataRequest requestWithURL:url];
+        [serverRequest setRequestMethod:@"get"];
+        [serverRequest setDelegate:self];
+        [serverRequest startAsynchronous];
+        
+    }
+    else if ([webServive isEqualToString:@"Search"]){
+        
+        
+        NSString *strurl=[NSString stringWithFormat:@"%@api/Products/Search/%@/%@",webServiceUrl,[[dict valueForKey:@"keyword"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],@"1"];
+        NSURL *url=[NSURL URLWithString:strurl];
+        NSLog(@"%@",url);
+        serverRequest=[ASIFormDataRequest requestWithURL:url];
+        [serverRequest setRequestMethod:@"GET"];
+        [serverRequest setDelegate:self];
+        [serverRequest startAsynchronous];
+        
+    }
+    
+    
+    
+    
 
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request{
     
     
+    
     NSMutableDictionary *dict=[NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:nil];
     
-    NSLog(@"dict------%@",dict);
-    
-    if ([urlType isEqualToString:@"Login"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"Login" object:self userInfo:dict];
-        
-    }
-    
-    else if ([urlType isEqualToString:@"Register"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"Register" object:self userInfo:dict];
-      //  [self createTabbar];
-    }
-    
-    else if ([urlType isEqualToString:@"ResetPassword"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"ResetPassword" object:self userInfo:dict];
-        
-    }
-    else if ([urlType isEqualToString:@"Stores"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"Stores" object:self userInfo:dict];
-    
-    }
-    
-    else if ([urlType isEqualToString:@"StoreDetails"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"StoreDetails" object:self userInfo:dict];
-        
-    }
-    else if ([urlType isEqualToString:@"Product"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"Product" object:self userInfo:dict];
-        
-    }
-    else if ([urlType isEqualToString:@"ProductDetails"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"ProductDetails" object:self userInfo:dict];
-        
-    }
-    else if ([urlType isEqualToString:@"Cart"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"Cart" object:self userInfo:dict];
-        
-    }
-    else if ([urlType isEqualToString:@"Checkout"]) {
-        
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"Checkout" object:self userInfo:dict];
-        
-    }
+    [[NSNotificationCenter defaultCenter]postNotificationName:urlType object:self userInfo:dict];
 
     
 }
 
--(void)requestFailed:(ASIHTTPRequest *)request{
+-(void)showView{
     
+    spinerView=[[UIView alloc] initWithFrame:CGRectMake((self.window.frame.size.width-100)/2, self.window.frame.size.height/2, 100, 100)];
+    spinerView.backgroundColor=[UIColor blackColor];
+    spinerView.layer.cornerRadius=8;
+    self.window.userInteractionEnabled=NO;
+    [self.window addSubview:spinerView];
+    activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityView.frame=CGRectMake(35, 30, 25, 25);
+    
+    
+    UILabel *loading=[[UILabel alloc] initWithFrame:CGRectMake(15, 55, 100, 20)];
+    loading.backgroundColor=[UIColor clearColor];
+    loading.text=@"Loading";
+    loading.textColor=[UIColor whiteColor];
+    [spinerView addSubview:loading];
+    [spinerView addSubview:activityView];
+    [activityView startAnimating];
+    
+}
+
+
+-(void)hideView
+{
+    self.window.userInteractionEnabled=YES;
+    [spinerView removeFromSuperview];
+}
+
+
+
+-(void)requestFailed:(ASIHTTPRequest *)request{
+   
+    [self hideView];
     
 }
  

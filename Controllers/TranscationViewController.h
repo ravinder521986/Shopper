@@ -15,8 +15,6 @@
 #import "InviteFriendViewController.h"
 #import "OrderViewController.h"
 #import "ProductViewController.h"
-#import "AddCustomViewController.h"
-#import "OrderHistoryViewController.h"
 @class AppDelegate;
 @interface TranscationViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
     

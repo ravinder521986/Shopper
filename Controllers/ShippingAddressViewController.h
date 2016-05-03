@@ -9,7 +9,7 @@
 #import "PaymentViewController.h"
 #import "AppDelegate.h"
 @class AppDelegate;
-@interface ShippingAddressViewController : UIViewController <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface ShippingAddressViewController : UIViewController <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 {
     AppDelegate *delObj;
     UIView *mainView;

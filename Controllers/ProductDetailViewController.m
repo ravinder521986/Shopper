@@ -14,6 +14,7 @@
 
 @implementation ProductDetailViewController
 @synthesize product_id;
+@synthesize order_dict;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -59,7 +60,6 @@
     
     
     
-    [self buttonPressed];
 
     // Do any additional setup after loading the view.
 }
@@ -95,7 +95,7 @@
     UIButton *searchBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [searchBtn setBackgroundImage:[UIImage imageNamed:@"search@2x.png"] forState:UIControlStateNormal];
     searchBtn.frame=CGRectMake(self.view.frame.size.width-20, 35, 30/2, 30/2);
-    //[searchBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
+    [searchBtn addTarget:self action:@selector(searchBtnPressed) forControlEvents:UIControlEventTouchUpInside];
     [customView1 addSubview:searchBtn];
     
     
@@ -116,8 +116,14 @@
     ProductDetailTbl.showsVerticalScrollIndicator=NO;
     ProductDetailTbl.separatorStyle=UITableViewCellSelectionStyleNone;
     [self.view addSubview:ProductDetailTbl];
+    [self buttonPressed];
+
     
     
+}
+-(void)searchBtnPressed{
+    SearchCategoryViewController *search=[[SearchCategoryViewController alloc] init];
+    [self.navigationController pushViewController:search animated:YES];
     
 }
 
@@ -140,6 +146,24 @@
     FinalDict=(NSMutableDictionary *)[NSDictionary dictionaryWithDictionary:[dict valueForKey:@"result"]];
     NSLog(@"...FinalDict...%@",FinalDict);
     
+    
+    if ([[FinalDict valueForKey:@"sizes"]isEqual:[NSNull null]]) {
+    }
+    else{
+        SizeArray=[[FinalDict valueForKey:@"sizes"] mutableCopy];
+
+    }
+
+    
+    
+    if ([[FinalDict valueForKey:@"colors"]isEqual:[NSNull null]]) {
+
+    }
+    else{
+        ColorArray=[[FinalDict valueForKey:@"colors"] mutableCopy];
+
+        
+    }
 
     
     
@@ -201,20 +225,10 @@
     }
     else if (indexPath.row==6){
         
-        return 90;
+        return 250;
         
     }
-     else if (indexPath.row==7){
-         
-        NSString *content=[FinalDict valueForKey:@"description"];
-        CGSize constraint = CGSizeMake(self.view.frame.size.width-20, 20000.0f);
-        CGSize size = [content boundingRectWithSize:constraint
-                                            options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin
-                                         attributes:roboto_regular_12 context:nil].size;
-        CGFloat content_height = MAX(size.height, 12.0f);
-         
-        return content_height+370;
-     }
+    
      else{
          
          
@@ -241,7 +255,7 @@
         
         if ([images count]) {
             
-            AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20,596/2)];
+            AsyncImageView *imageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20,285)];
             imageView.contentMode=UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds=YES;
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:imageView];
@@ -256,11 +270,49 @@
 
         
         
+        UIScrollView *scrollview=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 297, self.view.frame.size.width, 50)];
+        scrollview.userInteractionEnabled=YES;
+        scrollview.showsHorizontalScrollIndicator=NO;
+        scrollview.showsVerticalScrollIndicator=NO;
         
+        [cell.contentView addSubview:scrollview];
+        
+        int x=5;
+        for (int i=0; i<[images count]; i++) {
+            
+            AsyncImageView *SmallimageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(x,4, 50,50)];
+            SmallimageView.contentMode=UIViewContentModeScaleAspectFill;
+            SmallimageView.clipsToBounds=YES;
+            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:SmallimageView];
+            SmallimageView.imageURL=[NSURL URLWithString:[images objectAtIndex:i]];
+            [scrollview addSubview:SmallimageView];
+            
+            UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame=CGRectMake(x, 5, 40, 40);
+            btn.tag=i;
+            [btn addTarget:self action:@selector(tagProfileBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [scrollview addSubview:btn];
+            
+            
+            
+            
+            x=x+50+5;
+            scrollview.contentSize = CGSizeMake(x, 0);
+        }
+        
+
+        
+        
+    
+
+    
+    
+    
+    
         UIImageView *RectangleImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Rectangle@2x.png"]];
         RectangleImg.frame=CGRectMake(10,10 ,self.view.frame.size.width-20,40);
         [cell addSubview:RectangleImg];
-        
+    
         UILabel *lbl=[[UILabel alloc] initWithFrame:CGRectMake(15,20, self.view.frame.size.width-50, 20)];
         lbl.backgroundColor=[UIColor clearColor];
         lbl.text=[FinalDict valueForKey:@"title"];
@@ -277,14 +329,7 @@
         Dollerlbl.font=[UIFont fontWithName:@"Arial" size:12];
         Dollerlbl.textColor=[UIColor yellowColor];
         [cell addSubview:Dollerlbl];
-        
-        UIImageView *PhotoImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"image_bg_2.png"]];
-        PhotoImg.frame=CGRectMake((self.view.frame.size.width-300)/2,305, 103/2,103/2);
-        [cell.contentView addSubview:PhotoImg];
-        
-        UIImageView *PickImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"image-nd-bg.png"]];
-        PickImg.frame=CGRectMake((self.view.frame.size.width-100)/2,305, 103/2,103/2);
-        [cell.contentView addSubview:PickImg];
+     
         
         UIImageView *RectImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Rectangle-2.png"]];
         RectImg.frame=CGRectMake(10,355,self.view.frame.size.width-20,68/2);
@@ -304,12 +349,8 @@
         FollowImg.frame=CGRectMake(self.view.frame.size.width-170, 363, 141/2,36/2);
         [cell.contentView addSubview:FollowImg];
         
-       // UIImageView *BuyImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buy.png"]];
-       // BuyImg.frame=CGRectMake(self.view.frame.size.width-90,363, 141/2,36/2);
-       // [cell.contentView addSubview:BuyImg];
         
         UIButton *BuyImg=[UIButton buttonWithType:UIButtonTypeCustom];
-        
         [BuyImg setImage:[UIImage imageNamed:@"buy.png"] forState:UIControlStateNormal];
         BuyImg.frame=CGRectMake(self.view.frame.size.width-90,363, 141/2,36/2);
         [BuyImg addTarget:self action:@selector(sendAnswer:) forControlEvents:UIControlEventTouchUpInside];
@@ -708,50 +749,9 @@
         [Emaillbl sizeToFit];
         [cell.contentView addSubview:Emaillbl];
         
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-300)/2,60, 100, 30)];
-        Txtlbl.backgroundColor=[UIColor clearColor];
-        Txtlbl.text=@"ARMANI AX";
-        Txtlbl.numberOfLines=1;
-        Txtlbl.textAlignment=NSTextAlignmentLeft;
-        Txtlbl.font=[UIFont fontWithName:@"Roboto-Regular" size:13];
-        Txtlbl.textColor=[UIColor blackColor];
-        [Txtlbl sizeToFit];
-        [cell.contentView addSubview:Txtlbl];
-
-        UIImageView *LineImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider-.png"]];
-        LineImg.frame=CGRectMake(0,89, self.view.frame.size.width ,2/2);
-        [cell.contentView addSubview:LineImg];
-
-        
-    }
-    else if (indexPath.row==7){
         
         
-        NSString *content_title=[NSString stringWithFormat:@"%@",[FinalDict valueForKey:@"description"]];
-        CGSize constraint_title = CGSizeMake(self.view.frame.size.width-20, 20000.0f);
-        CGSize size = [content_title boundingRectWithSize:constraint_title
-                                                  options:NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin                                         attributes:Arial_Font context:nil].size;
-        CGFloat title_height = MAX(size.height, 12.0f);
-        
-        
-        UILabel*titleLbl=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, title_height+2)];
-        titleLbl.backgroundColor=[UIColor clearColor];
-        titleLbl.text=[FinalDict valueForKey:@"description"];
-        titleLbl.font=[UIFont fontWithName:@"Roboto-Regular" size:12];
-        titleLbl.textColor=[UIColor colorWithRed:75.0/255.0 green:73.0/255.0 blue:85.0/255.0 alpha:1.0];
-        titleLbl.textAlignment=NSTextAlignmentLeft;
-        titleLbl.numberOfLines=0;
-        [cell.contentView addSubview:titleLbl];
-        
-        UIButton *DesignerBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        DesignerBtn.frame=CGRectMake((self.view.frame.size.width-260)/2,title_height+17, 521/2, 89/2);
-        UIImage *regImage = [UIImage imageNamed:@"DESIGNER.png"];
-        [DesignerBtn setBackgroundImage:regImage forState:UIControlStateNormal];
-        DesignerBtn.titleLabel.textAlignment=NSTextAlignmentLeft;
-        [DesignerBtn addTarget:self action:@selector(DesignerBtn) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:DesignerBtn];
-        
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-300)/2,title_height+90, 170, 30)];
+        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-300)/2,65, 170, 30)];
         Txtlbl.backgroundColor=[UIColor clearColor];
         Txtlbl.text=@"AMBERCOMBINE & FITCH NY,USA";
         Txtlbl.numberOfLines=2;
@@ -762,27 +762,49 @@
         [cell.contentView addSubview:Txtlbl];
         
         UIImageView *FITCHImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FITCH-pik.png"]];
-        FITCHImg.frame=CGRectMake((self.view.frame.size.width-300)/2,title_height+140, 609/2 ,280/2);
+        FITCHImg.frame=CGRectMake(10,105, self.view.frame.size.width-20 ,280/2);
         FITCHImg.backgroundColor=[UIColor redColor];
         [cell.contentView addSubview:FITCHImg];
+
         
         
-        UIImageView *StoreImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Storage.png"]];
-        StoreImg.frame=CGRectMake((self.view.frame.size.width-260)/2,title_height+300, 521/2 ,89/2);
-        StoreImg.backgroundColor=[UIColor redColor];
-        [cell.contentView addSubview:StoreImg];
+        UIImageView *LineImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider-.png"]];
+        LineImg.frame=CGRectMake(0,248, self.view.frame.size.width ,1);
+        [cell.contentView addSubview:LineImg];
+
         
     }
     
     return cell;
     
 }
+
+
+-(void)tagProfileBtn:(id)sender{
+    
+    
+    UIButton *btn=(UIButton *)sender;
+    
+    NSInteger tag1=btn.tag;
+    
+    selectedImage=tag1;
+    
+    NSLog(@"tag1-----%ld",(long)tag1);
+    
+    [ProductDetailTbl reloadData];
+  
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
 }
 
 -(void)sendAnswer:(id)sender{
+    
+    
+    
     
     mainView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:mainView];
@@ -793,9 +815,10 @@
     
     
     
-    UIImageView *ImgIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"popup-bg.png"]];
-    ImgIcon.frame=CGRectMake((self.view.frame.size.width-258)/2,180, 517/2, 290);
+    UIImageView *ImgIcon=[[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-258)/2,140, 517/2, 290)];
     ImgIcon.userInteractionEnabled=YES;
+    ImgIcon.backgroundColor=[UIColor whiteColor];
+    ImgIcon.layer.cornerRadius=15.0;
     [mainView addSubview:ImgIcon];
     
     
@@ -962,26 +985,71 @@
 -(void)AddRequest{
     
     
-    OrderUserViewController *OrderUser=[[OrderUserViewController alloc]init];
-    [self.navigationController pushViewController:OrderUser animated:YES];
+    if ([self loginValidation]) {
+        
+        SingleTonClass *single=[SingleTonClass getInstance];
+        single.order_size=Sizelbl.text;
+        single.order_colour=colorlbl.text;
+        
+        NSString *idValue=[FinalDict valueForKey:@"id"];
+        NSString *PriceValue=[FinalDict valueForKey:@"price"];
+        NSString *QuantityValue=[FinalDict valueForKey:@"quantity"];
+        
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Cart" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebServiceResponse:) name:@"Cart" object:nil];
+        NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+        [dict setValue:idValue forKey:@"id"];
+        [dict setValue:PriceValue forKey:@"price"];
+        [dict setValue:QuantityValue forKey:@"quantity"];
+        [dict setValue:Sizelbl.text forKey:@"sizes"];
+        [dict setValue:colorlbl.text forKey:@"colors"];
+        [delObj PostWebServer:dict type:@"Cart"];
+
+    }
     
-    NSString *idValue=[FinalDict valueForKey:@"id"];
-    NSString *PriceValue=[FinalDict valueForKey:@"price"];
-    NSString *QuantityValue=[FinalDict valueForKey:@"quantity"];
     
     
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Cart" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebServiceResponse:) name:@"Cart" object:nil];
-    NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
-    [dict setValue:idValue forKey:@"id"];
-    [dict setValue:PriceValue forKey:@"price"];
-    [dict setValue:QuantityValue forKey:@"quantity"];
-    [dict setValue:Sizelbl.text forKey:@"sizes"];
-    [dict setValue:colorlbl.text forKey:@"colors"];
-    [delObj PostWebServer:dict type:@"Cart"];
     
     
 }
+
+-(BOOL)loginValidation{
+    
+    
+    
+    if(Sizelbl.text.length<1)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please select the size"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
+    if([Sizelbl.text isEqualToString:@"Size"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please select the size"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
+    if([colorlbl.text isEqualToString:@"color"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please select the colour"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
+    
+    
+    if(colorlbl.text.length<1)
+    {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Please select the colour"  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
+    
+    
+    
+    return YES;
+}
+
 
 
 -(void)WebServiceResponse:(NSNotification *)dictionary{
@@ -1025,7 +1093,7 @@
     
      UIButton * AddItemBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     AddItemBtn.frame=CGRectMake(10,90, 192/2, 63/2);
-    [AddItemBtn addTarget:self action:@selector(CancelBtn) forControlEvents:UIControlEventTouchUpInside];
+    [AddItemBtn addTarget:self action:@selector(cartBtn) forControlEvents:UIControlEventTouchUpInside];
     [ImgIcon addSubview:AddItemBtn];
     
     
@@ -1047,9 +1115,21 @@
     
 }
 
--(void)CancelBtn{
+-(void)cartBtn{
     
     [mainView removeFromSuperview];
+
+    
+    OrderUserViewController *order=[[OrderUserViewController alloc] init];
+    order.order_dict=FinalDict;
+    [self.navigationController pushViewController:order animated:YES];
+    
+    
+}
+
+-(void)CancelBtn{
+    [mainView removeFromSuperview];
+
     
 }
 -(void)SizeIconBtn{

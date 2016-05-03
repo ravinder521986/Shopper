@@ -7,13 +7,14 @@
 //
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "SingleTonClass.h"
 @class AppDelegate;
 @interface ShippingMethodViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 {
     AppDelegate *delObj;
     UITableView *ShippingTbl;
     NSMutableArray *TopicArray;
-    
+    SingleTonClass *single;
     NSMutableArray *selectedArray;
        
 }

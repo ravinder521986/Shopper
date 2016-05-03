@@ -83,7 +83,7 @@
     plusBtn.adjustsImageWhenHighlighted=NO;
     [plusBtn setBackgroundImage:[UIImage imageNamed:@"plus@2x.png"] forState:UIControlStateNormal];
     plusBtn.frame=CGRectMake(self.view.frame.size.width-50, 35, 34/2, 31/2);
-    [plusBtn addTarget:self action:@selector(Add_Slider) forControlEvents:UIControlEventTouchUpInside];
+    [plusBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
     [customView1 addSubview:plusBtn];
     
     
@@ -1006,7 +1006,7 @@
         
         if (indexPath.row==3) {
             
-            AddCustomViewController *InviteFriend=[[AddCustomViewController alloc]init];
+            InviteFriendViewController *InviteFriend=[[InviteFriendViewController alloc]init];
             [self.navigationController pushViewController:InviteFriend animated:YES];
             
             
@@ -1017,7 +1017,7 @@
         if (indexPath.row==4) {
             
             
-            OrderHistoryViewController *Order=[[OrderHistoryViewController alloc]init];
+            OrderViewController *Order=[[OrderViewController alloc]init];
             [self.navigationController pushViewController:Order animated:YES];
             
             //SendGiftViewController *payment=[[SendGiftViewController alloc] init];
@@ -1027,12 +1027,12 @@
         
         
         if (indexPath.row==5) {
-            ShippingMethodViewController *payment=[[ShippingMethodViewController alloc] init];
-            [self.navigationController pushViewController:payment animated:YES];
+           // SettingViewController *payment=[[SettingViewController alloc] init];
+            //[self.navigationController pushViewController:payment animated:YES];
         }
         if (indexPath.row==6) {
-            ShippingAddressViewController *payment=[[ShippingAddressViewController alloc] init];
-            [self.navigationController pushViewController:payment animated:YES];
+            //PendingPaymentViewController *payment=[[PendingPaymentViewController alloc] init];
+           // [self.navigationController pushViewController:payment animated:YES];
         }
         if (indexPath.row==7) {
            // FriendListViewController *payment=[[FriendListViewController alloc] init];
@@ -1086,11 +1086,6 @@
     [self.navigationController pushViewController:EditProfile animated:YES];
 }
 
--(void)Add_Slider{
-    
-    AddCustomViewController *AddCustom=[[AddCustomViewController alloc]init];
-    [self.navigationController pushViewController:AddCustom animated:YES];
-}
 
 
 - (void)didReceiveMemoryWarning {

@@ -6,10 +6,9 @@
 //  Copyright © 2016 MAC. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "PaymentViewController.h"
-#import "ShippingMethodViewController.h"
-#import "CartViewController.h"
 #import "AppDelegate.h"
+#import "SingleTonClass.h"
+#import "ShippingMethodViewController.h"
 @class AppDelegate;
 @interface OrderUserViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 {
@@ -17,21 +16,15 @@
     UITableView *ProductDetailTbl;
     NSMutableDictionary *FinalDict;
     
-    
+    SingleTonClass *single;
     
     UITextField *emailTextfield;
+    UILabel *Dollerlbl;
+    NSMutableDictionary *order_dict;
+
     
-    
-    
-    // Shipping Method screen
-     
-     
-    // Select Shipping method
-     
-   //  Instant shipping
-   //  Same day shipping
-  //   Standard Shipping
-  //   Express Shipping
     
 }
+@property (nonatomic,strong) NSMutableDictionary *order_dict;
+
 @end

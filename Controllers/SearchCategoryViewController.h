@@ -1,22 +1,23 @@
 //
-//  ProductViewController.h
+//  SearchCategoryViewController.h
 //  Project
 //
-//  Created by Possibility Solutions on 13/02/16.
+//  Created by MAC on 27/04/16.
 //  Copyright © 2016 MAC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "ProductDetailViewController.h"
 #import "AppDelegate.h"
-#import "AsyncImageView.h"
-#import "SearchCategoryViewController.h"
 @class AppDelegate;
-@interface ProductViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
-{
+@interface SearchCategoryViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>{
+    
+    UITableView *searchTableView;
+    UISearchBar *searchBarCon;
+    AppDelegate *delObj;
+    
+    
     
     UITableView *transactionTbl;
-     AppDelegate *delObj;
     NSMutableArray *ProductArray;
     
     UIView *mainView;
@@ -50,7 +51,6 @@
     NSInteger TagValue;
     NSString *store_id;
     NSString *store_name;
-    
 
 }
 @property (strong, nonatomic) NSString *StrValue;
@@ -59,6 +59,3 @@
 
 
 @end
-
-
-

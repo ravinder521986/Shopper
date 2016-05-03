@@ -34,6 +34,8 @@
     NSString *StrValue;
     NSInteger *Value;
     
+    NSString *valueType;
+    
 }
 @property (nonatomic, strong) NSString *StrValue;
 @end

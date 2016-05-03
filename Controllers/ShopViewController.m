@@ -36,8 +36,12 @@
     SegmentChangeView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:SegmentChangeView];
     
+    passImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Line@2x.png"]];
+    passImg.frame=CGRectMake((self.view.frame.size.width-280)/2,140, 160/2, 5/2);
+    [self.view addSubview:passImg];
     
-    transactionTbl=[[UITableView alloc] initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height-114) style:UITableViewStylePlain];
+    
+    transactionTbl=[[UITableView alloc] initWithFrame:CGRectMake(0, 155, self.view.frame.size.width, self.view.frame.size.height-114) style:UITableViewStylePlain];
     transactionTbl.showsVerticalScrollIndicator=YES;
     transactionTbl.showsHorizontalScrollIndicator=NO;
     transactionTbl.showsVerticalScrollIndicator=NO;
@@ -56,51 +60,263 @@
     [MenBtn removeFromSuperview];
     [KidBtn removeFromSuperview];
     
-    CGFloat x=self.view.frame.size.width/3;
+   
+    
+   
+    [self storeBtn];
+    
+    
+    
+    
+    
+}
 
-    AllBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    AllBtn.frame=CGRectMake(10,110, self.view.frame.size.width/3, 30);
-    [AllBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [AllBtn setTitle:@"ALL" forState:UIControlStateNormal];
-    [AllBtn setBackgroundColor:[UIColor clearColor]];
-    AllBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [AllBtn addTarget:self action:@selector(StoreBtnPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:AllBtn];
+-(void)storeBtn{
     
     
-    ClothBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    ClothBtn.frame=CGRectMake(x,110, self.view.frame.size.width/3, 30);
-    [ClothBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [ClothBtn setTitle:@"CLOTHING" forState:UIControlStateNormal];
-    [ClothBtn setBackgroundColor:[UIColor clearColor]];
-    ClothBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [ClothBtn addTarget:self action:@selector(StoreBtnPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:ClothBtn];
+    int x=10;
     
-    ElectronicBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    ElectronicBtn.frame=CGRectMake(x+x,110, self.view.frame.size.width/3-10, 30);
-    [ElectronicBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [ElectronicBtn setTitle:@"ELECTRONICS" forState:UIControlStateNormal];
-    [ElectronicBtn setBackgroundColor:[UIColor clearColor]];
-    ElectronicBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [ElectronicBtn addTarget:self action:@selector(StoreBtnPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:ElectronicBtn];
+    int totalwidth=self.view.frame.size.width-20;
+    
+    NSLog(@"totalwidth----%d",totalwidth);
+    
+    int oneBoxValue=totalwidth/3;
+    
+    NSLog(@"oneBoxValue----%d",oneBoxValue);
     
     
-    passImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Line@2x.png"]];
-    passImg.frame=CGRectMake(0,140, self.view.frame.size.width/3, 5/2);
-    [self.view addSubview:passImg];
+    
+   
+        StrValue=@"0";
+    
+             AllBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        AllBtn.frame=CGRectMake(x,120, oneBoxValue, 30);
+        [AllBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [AllBtn setTitle:@"ALL" forState:UIControlStateNormal];
+        [AllBtn setBackgroundColor:[UIColor clearColor]];
+        AllBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        AllBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        
+        [AllBtn addTarget:self action:@selector(BtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:AllBtn];
+        
+        
+        ClothBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        ClothBtn.frame=CGRectMake(x+oneBoxValue,120, oneBoxValue, 30);
+        [ClothBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [ClothBtn setTitle:@"CLOTHING" forState:UIControlStateNormal];
+        [ClothBtn setBackgroundColor:[UIColor clearColor]];
+        ClothBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [ClothBtn addTarget:self action:@selector(Btn1Pressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:ClothBtn];
+        
+        ElectronicBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        ElectronicBtn.frame=CGRectMake(x+oneBoxValue*2,120, oneBoxValue, 30);
+        [ElectronicBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [ElectronicBtn setTitle:@"ELECTRONICS" forState:UIControlStateNormal];
+        [ElectronicBtn setBackgroundColor:[UIColor clearColor]];
+        ElectronicBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [ElectronicBtn addTarget:self action:@selector(Btn2Pressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:ElectronicBtn];
+        
+        
+        
+        passImg.frame=CGRectMake(x+3,150, oneBoxValue-15, 3);
+        
+        
+        
+        
     
 
     
     
     
+}
+
+-(void)locationBtn
+{
+    StrValue=@"1";
     
-    // Do any additional setup after loading the view.
+    [AllBtn removeFromSuperview];
+    [ClothBtn removeFromSuperview];
+    [ElectronicBtn removeFromSuperview];
+    [WomenBtn removeFromSuperview];
+    [MenBtn removeFromSuperview];
+    [KidBtn removeFromSuperview];
+    
+    
+    
+    CanadaBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    CanadaBtn.frame=CGRectMake(10,110, self.view.frame.size.width-230, 30);
+    [CanadaBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [CanadaBtn setTitle:@"CANADA" forState:UIControlStateNormal];
+    CanadaBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [CanadaBtn addTarget:self action:@selector(BtnPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:CanadaBtn];
+    
+    
+    USABtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    USABtn.frame=CGRectMake(110,110, self.view.frame.size.width-230, 30);
+    [USABtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [USABtn setTitle:@"USA" forState:UIControlStateNormal];
+    USABtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [USABtn addTarget:self action:@selector(Btn1Pressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:USABtn];
+    
+    WorldBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    WorldBtn.frame=CGRectMake(220,110, self.view.frame.size.width-230, 30);
+    WorldBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [WorldBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [WorldBtn setTitle:@"WORLD" forState:UIControlStateNormal];
+    [WorldBtn addTarget:self action:@selector(Btn2Pressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:WorldBtn];
+    
+    
+    
+}
+
+-(void)categoryBtn
+{
+    
+    StrValue=@"2";
+    [AllBtn removeFromSuperview];
+    [ClothBtn removeFromSuperview];
+    [ElectronicBtn removeFromSuperview];
+    [CanadaBtn removeFromSuperview];
+    [USABtn removeFromSuperview];
+    [WorldBtn removeFromSuperview];
+    
+    
+    
+    WomenBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    WomenBtn.frame=CGRectMake(10,110, self.view.frame.size.width-230, 30);
+    [WomenBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [WomenBtn setTitle:@"WOMAN" forState:UIControlStateNormal];
+    WomenBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [WomenBtn addTarget:self action:@selector(BtnPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:WomenBtn];
+    
+    
+    MenBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    MenBtn.frame=CGRectMake(110,110, self.view.frame.size.width-230, 30);
+    [MenBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [MenBtn setTitle:@"MEN" forState:UIControlStateNormal];
+    MenBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [MenBtn addTarget:self action:@selector(Btn1Pressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:MenBtn];
+    
+    KidBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    KidBtn.frame=CGRectMake(220,110, self.view.frame.size.width-230, 30);
+    KidBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [KidBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [KidBtn setTitle:@"KIDS" forState:UIControlStateNormal];
+    [KidBtn addTarget:self action:@selector(Btn2Pressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:KidBtn];
+    
+    
+}
+-(void)BtnPressed{
+    
+    int x=10;
+    
+    int totalwidth=self.view.frame.size.width-20;
+    
+    NSLog(@"totalwidth----%d",totalwidth);
+    
+    int oneBoxValue=totalwidth/3;
+    
+    NSLog(@"oneBoxValue----%d",oneBoxValue);
+    
+    passImg.frame=CGRectMake(x+3,150, oneBoxValue-15, 3);
+    
+    
+    if ([StrValue isEqualToString:@"2"]) {
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Category" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebServiceResponse:) name:@"Category" object:nil];
+        NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+        [dict setValue:@"WOMAN" forKey:@"category"];
+        [delObj PostWebServer:dict type:@"Category"];
+        
+
+    }
+    
+    
+    
+}
+-(void)Btn1Pressed{
+    
+    
+
+    int x=10;
+    
+    int totalwidth=self.view.frame.size.width-20;
+    
+    NSLog(@"totalwidth----%d",totalwidth);
+    
+    int oneBoxValue=totalwidth/3;
+    
+    NSLog(@"oneBoxValue----%d",oneBoxValue);
+    
+    passImg.frame=CGRectMake(x+oneBoxValue+10,150, oneBoxValue-15, 3);
+    
+    if ([StrValue isEqualToString:@"2"]) {
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Category" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebServiceResponse:) name:@"Category" object:nil];
+        NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+        [dict setValue:@"MAN" forKey:@"category"];
+        [delObj PostWebServer:dict type:@"Category"];
+        
+        
+    }
+    
+    
+    
+}
+
+-(void)Btn2Pressed{
+    
+    
+    int x=10;
+    
+    int totalwidth=self.view.frame.size.width-20;
+    
+    NSLog(@"totalwidth----%d",totalwidth);
+    
+    int oneBoxValue=totalwidth/3;
+    
+    NSLog(@"oneBoxValue----%d",oneBoxValue);
+    
+    passImg.frame=CGRectMake(x+10+oneBoxValue*2,150, oneBoxValue-15, 3);
+    
+    if ([StrValue isEqualToString:@"2"]) {
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Category" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebServiceResponse:) name:@"Category" object:nil];
+        NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+        [dict setValue:@"KIDS" forKey:@"category"];
+        [delObj PostWebServer:dict type:@"Category"];
+        
+        
+    }
+    
+    
+    
 }
 - (void)SegmentValueChanged:(UISegmentedControl *)segment
 {
+    int x=10;
     
+    int totalwidth=self.view.frame.size.width-20;
+    
+    NSLog(@"totalwidth----%d",totalwidth);
+    
+    int oneBoxValue=totalwidth/3;
+    
+    NSLog(@"oneBoxValue----%d",oneBoxValue);
+    
+
     
     if(segment.selectedSegmentIndex == 0)
     {
@@ -114,42 +330,42 @@
         [MenBtn removeFromSuperview];
         [KidBtn removeFromSuperview];
         
-        CGFloat x=self.view.frame.size.width/3;
-        passImg.frame=CGRectMake(10,140, self.view.frame.size.width/3, 5/2);
-
-      
+        
+        
         AllBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        AllBtn.frame=CGRectMake(0,110, self.view.frame.size.width/3, 30);
+        AllBtn.frame=CGRectMake(x,120, oneBoxValue, 30);
         [AllBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [AllBtn setTitle:@"ALL" forState:UIControlStateNormal];
         [AllBtn setBackgroundColor:[UIColor clearColor]];
         AllBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [AllBtn addTarget:self action:@selector(StoreBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        AllBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+
+        [AllBtn addTarget:self action:@selector(BtnPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:AllBtn];
         
-
+        
         ClothBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        ClothBtn.frame=CGRectMake(x,110, self.view.frame.size.width/3, 30);
+        ClothBtn.frame=CGRectMake(x+oneBoxValue,120, oneBoxValue, 30);
         [ClothBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [ClothBtn setTitle:@"CLOTHING" forState:UIControlStateNormal];
         [ClothBtn setBackgroundColor:[UIColor clearColor]];
         ClothBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [ClothBtn addTarget:self action:@selector(StoreBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [ClothBtn addTarget:self action:@selector(Btn1Pressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:ClothBtn];
         
-
         ElectronicBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        ElectronicBtn.frame=CGRectMake(x+x,110, self.view.frame.size.width/3-10, 30);
+        ElectronicBtn.frame=CGRectMake(x+oneBoxValue*2,120, oneBoxValue, 30);
         [ElectronicBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [ElectronicBtn setTitle:@"ELECTRONICS" forState:UIControlStateNormal];
         [ElectronicBtn setBackgroundColor:[UIColor clearColor]];
         ElectronicBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [ElectronicBtn addTarget:self action:@selector(StoreBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [ElectronicBtn addTarget:self action:@selector(Btn2Pressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:ElectronicBtn];
         
         
-        
-        
+ 
+        passImg.frame=CGRectMake(x+3,150, oneBoxValue-15, 3);
+ 
         
         
         
@@ -165,45 +381,39 @@
         [MenBtn removeFromSuperview];
         [KidBtn removeFromSuperview];
         
-        CGFloat x=self.view.frame.size.width/3;
         
-        passImg.frame=CGRectMake(x,140, self.view.frame.size.width/3, 5/2);
-
+        
         CanadaBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        CanadaBtn.frame=CGRectMake(10,110, self.view.frame.size.width/3, 30);
-        [CanadaBtn setBackgroundColor:[UIColor clearColor]];
+        CanadaBtn.frame=CGRectMake(x,120, oneBoxValue, 30);
         [CanadaBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [CanadaBtn setTitle:@"CANADA" forState:UIControlStateNormal];
         CanadaBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [CanadaBtn addTarget:self action:@selector(LocationBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [CanadaBtn addTarget:self action:@selector(BtnPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:CanadaBtn];
         
         
         USABtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        USABtn.frame=CGRectMake(x,110, self.view.frame.size.width/3, 30);
+        USABtn.frame=CGRectMake(x+oneBoxValue,120, oneBoxValue, 30);
         [USABtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [USABtn setTitle:@"USA" forState:UIControlStateNormal];
         USABtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [USABtn setBackgroundColor:[UIColor clearColor]];
-        [USABtn addTarget:self action:@selector(LocationBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [USABtn addTarget:self action:@selector(Btn1Pressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:USABtn];
         
         WorldBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        WorldBtn.frame=CGRectMake(x+x,110, self.view.frame.size.width/3-10, 30);
+        WorldBtn.frame=CGRectMake(x+oneBoxValue*2,120, oneBoxValue, 30);
         WorldBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [WorldBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [WorldBtn setTitle:@"WORLD" forState:UIControlStateNormal];
-        [WorldBtn setBackgroundColor:[UIColor clearColor]];
-        [WorldBtn addTarget:self action:@selector(LocationBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [WorldBtn addTarget:self action:@selector(Btn2Pressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:WorldBtn];
-        
-        
+        passImg.frame=CGRectMake(x+3,150, oneBoxValue-15, 3);
+
         
     }
     if(segment.selectedSegmentIndex == 2){
         
         StrValue=@"2";
-        //  [self buttonCategory];
         
         [AllBtn removeFromSuperview];
         [ClothBtn removeFromSuperview];
@@ -212,44 +422,50 @@
         [USABtn removeFromSuperview];
         [WorldBtn removeFromSuperview];
         
-        CGFloat x=self.view.frame.size.width/3;
-       
-        passImg.frame=CGRectMake(x+x,140, self.view.frame.size.width/3, 5/2);
-
+        
+        
         WomenBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        WomenBtn.frame=CGRectMake(10,110, self.view.frame.size.width/3, 30);
+        WomenBtn.frame=CGRectMake(x,120, oneBoxValue, 30);
         [WomenBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [WomenBtn setTitle:@"WOMAN" forState:UIControlStateNormal];
         WomenBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [WomenBtn setBackgroundColor:[UIColor clearColor]];
-        [WomenBtn addTarget:self action:@selector(CategoryBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [WomenBtn addTarget:self action:@selector(BtnPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:WomenBtn];
         
         
         MenBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        MenBtn.frame=CGRectMake(x,110, self.view.frame.size.width/3, 30);
+        MenBtn.frame=CGRectMake(x+oneBoxValue,120, oneBoxValue, 30);
         [MenBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [MenBtn setTitle:@"MEN" forState:UIControlStateNormal];
         MenBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        [MenBtn setBackgroundColor:[UIColor clearColor]];
-        [MenBtn addTarget:self action:@selector(CategoryBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [MenBtn addTarget:self action:@selector(Btn1Pressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:MenBtn];
         
         KidBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        KidBtn.frame=CGRectMake(x+x,110, self.view.frame.size.width/3-10, 30);
+        KidBtn.frame=CGRectMake(x+oneBoxValue*2,120, oneBoxValue, 30);
         KidBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [KidBtn setTitleColor:[UIColor colorWithRed:214.0/255.0 green:43.0/255.0 blue:74.0/255.0 alpha:1.0] forState:UIControlStateNormal];
         [KidBtn setTitle:@"KIDS" forState:UIControlStateNormal];
-        [KidBtn setBackgroundColor:[UIColor clearColor]];
-        [KidBtn addTarget:self action:@selector(CategoryBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        [KidBtn addTarget:self action:@selector(Btn2Pressed) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:KidBtn];
         
+        passImg.frame=CGRectMake(x+3,150, oneBoxValue-15, 3);
         
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Category" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebServiceResponse:) name:@"Category" object:nil];
+        NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+        [dict setValue:@"WOMAN" forKey:@"category"];
+        [delObj PostWebServer:dict type:@"Category"];
+
+
+
     }
     
     
     
 }
+
 -(void)buttonStore{
     
     
@@ -274,14 +490,7 @@
     NSLog(@"..ShopArray..%@",ShopArray);
     
     
-    
-    [[NSUserDefaults standardUserDefaults]setValue:[[dict valueForKey:@"result"] valueForKey:@"id"] forKey:@"id"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
-    NSLog(@"...id....%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"id"]);
-    
-    
-    
+      
     transactionTbl.dataSource=self;
     transactionTbl.delegate=self;
     [transactionTbl reloadData];
@@ -340,7 +549,7 @@
     searchBtn.adjustsImageWhenHighlighted=NO;
     [searchBtn setBackgroundImage:[UIImage imageNamed:@"search@2x.png"] forState:UIControlStateNormal];
     searchBtn.frame=CGRectMake(self.view.frame.size.width-20, 35, 30/2, 30/2);
-    // [searchBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
+    [searchBtn addTarget:self action:@selector(searchBtnPressed) forControlEvents:UIControlEventTouchUpInside];
     [customView1 addSubview:searchBtn];
     
     
@@ -355,6 +564,11 @@
     [self.view addSubview:customView1];
     
     
+    
+}
+-(void)searchBtnPressed{
+    SearchCategoryViewController *search=[[SearchCategoryViewController alloc] init];
+    [self.navigationController pushViewController:search animated:YES];
     
 }
 
@@ -372,21 +586,13 @@
 
 {
     
-    if ([StrValue isEqualToString:@"0"]) {
+    if ([ShopArray count]) {
         
         return [ShopArray count];
-        
-    }
-    else if ([StrValue isEqualToString:@"1"]){
-        
-        return 1;
-        
+
     }
     else{
-        
-        
-        return 1;
-        
+        return 0;
     }
 }
 
@@ -399,7 +605,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
         
     }
-    if ([StrValue isEqualToString:@"0"]) {
+    
+    
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    
+    if ([ShopArray count]) {
         
         UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.view.frame.size.width, 50)];
         TxtLbl.font=[UIFont fontWithName:@"Arial" size:12];
@@ -415,16 +625,37 @@
         UIImageView *LineImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Divider@2x.png"]];
         LineImg.frame=CGRectMake(0,50,self.view.frame.size.width,1);
         [cell.contentView addSubview:LineImg];
-        
+
     }
-    else if ([StrValue isEqualToString:@"1"]){
-        
-        
-    }
-    else{
-        
-        
-    }
+    
+    
+    
+//    if ([StrValue isEqualToString:@"0"]) {
+//        
+//        UILabel *TxtLbl=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.view.frame.size.width, 50)];
+//        TxtLbl.font=[UIFont fontWithName:@"Arial" size:12];
+//        TxtLbl.textAlignment=NSTextAlignmentLeft;
+//        TxtLbl.text=[[[ShopArray objectAtIndex:indexPath.row]valueForKey:@"details"]valueForKey:@"name"];
+//        [TxtLbl setBackgroundColor:[UIColor clearColor]];
+//        [cell.contentView addSubview:TxtLbl];
+//        
+//        UIImageView *Img=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"next_arrow@2x.png"]];
+//        Img.frame=CGRectMake(self.view.frame.size.width-20,20, 13/2, 21/2);
+//        [cell.contentView addSubview:Img];
+//        
+//        UIImageView *LineImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Divider@2x.png"]];
+//        LineImg.frame=CGRectMake(0,50,self.view.frame.size.width,1);
+//        [cell.contentView addSubview:LineImg];
+//        
+//    }
+//    else if ([StrValue isEqualToString:@"1"]){
+//        
+//        
+//    }
+//    else{
+//        
+//        
+//    }
     return cell;
     
 }

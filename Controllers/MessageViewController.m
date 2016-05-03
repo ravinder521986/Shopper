@@ -75,11 +75,11 @@
        
     
     UIImageView *FormaIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Round_Black@2x.png"]];
-    FormaIcon.frame=CGRectMake(0,64, self.view.frame.size.width, 77/2);
+    FormaIcon.frame=CGRectMake((self.view.frame.size.width-320)/2,64, 640/2, 77/2);
     [FormaIcon setBackgroundColor:[UIColor greenColor]];
     [mainView addSubview:FormaIcon];
     
-    UILabel *Websitelbl=[[UILabel alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20, 35)];
+    UILabel *Websitelbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-300)/2,10, 100, 35)];
     Websitelbl.font = [UIFont fontWithName:@"Arial" size:13];
     Websitelbl.text=@"ADD A NEW CREDIT CARD";
     Websitelbl.textAlignment=NSTextAlignmentCenter;
@@ -89,7 +89,7 @@
     [FormaIcon addSubview:Websitelbl];
     
     FirstNameTxt=[[UITextField alloc] init];
-    FirstNameTxt.frame=CGRectMake(15,110, self.view.frame.size.width-20, 25);
+    FirstNameTxt.frame=CGRectMake(15,110, 280, 25);
     FirstNameTxt.tag=1;
     FirstNameTxt.delegate=self;
     FirstNameTxt.borderStyle=UITextBorderStyleNone;
@@ -104,13 +104,13 @@
     [mainView addSubview:FirstNameTxt];
     
     UIImageView *LineImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg.frame=CGRectMake(10,138, self.view.frame.size.width, 2/2);
+    LineImg.frame=CGRectMake((self.view.frame.size.width-299.5)/2,138, 599/2, 2/2);
     [mainView addSubview:LineImg];
 
     
     
     LastNameTxt=[[UITextField alloc] init];
-    LastNameTxt.frame=CGRectMake(15,140, self.view.frame.size.width-20, 25);
+    LastNameTxt.frame=CGRectMake(15,140, 280, 25);
     LastNameTxt.tag=2;
     LastNameTxt.delegate=self;
     LastNameTxt.borderStyle=UITextBorderStyleNone;
@@ -129,11 +129,11 @@
   
     
     UIImageView *LineImg1=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg1.frame=CGRectMake(10,168, self.view.frame.size.width, 2/2);
+    LineImg1.frame=CGRectMake((self.view.frame.size.width-299.5)/2,168, 599/2, 2/2);
     [mainView addSubview:LineImg1];
     
     CreditCardNoTxt=[[UITextField alloc] init];
-    CreditCardNoTxt.frame=CGRectMake(15,170, self.view.frame.size.width-20, 25);
+    CreditCardNoTxt.frame=CGRectMake(15,170, 280, 25);
     CreditCardNoTxt.tag=3;
     CreditCardNoTxt.delegate=self;
     CreditCardNoTxt.borderStyle=UITextBorderStyleNone;
@@ -149,11 +149,11 @@
     [mainView addSubview:CreditCardNoTxt];
     
     UIImageView *LineImg2=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg2.frame=CGRectMake(10,198, self.view.frame.size.width, 2/2);
+    LineImg2.frame=CGRectMake((self.view.frame.size.width-299.5)/2,198, 599/2, 2/2);
     [mainView addSubview:LineImg2];
     
     YearTxt=[[UITextField alloc] init];
-    YearTxt.frame=CGRectMake(15,200, self.view.frame.size.width-20, 25);
+    YearTxt.frame=CGRectMake(15,200, 280, 25);
     YearTxt.tag=4;
     YearTxt.delegate=self;
     YearTxt.borderStyle=UITextBorderStyleNone;
@@ -170,18 +170,18 @@
     
     
     UIButton *dateBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    dateBtn.frame=CGRectMake(15,200, self.view.frame.size.width-20, 25);
+    dateBtn.frame=CGRectMake(15,200, 280, 25);
     [dateBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [dateBtn addTarget:self action:@selector(dateBtnPressed) forControlEvents:UIControlEventTouchUpInside];
     [mainView addSubview:dateBtn];
 
     UIImageView *LineImg3=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg3.frame=CGRectMake(10,228, self.view.frame.size.width, 2/2);
+    LineImg3.frame=CGRectMake((self.view.frame.size.width-299.5)/2,228, 599/2, 2/2);
     [mainView addSubview:LineImg3];
     
     
     AddLineTxt=[[UITextField alloc] init];
-    AddLineTxt.frame=CGRectMake(15,230, self.view.frame.size.width-20, 25);
+    AddLineTxt.frame=CGRectMake(15,230, 280, 25);
     AddLineTxt.tag=5;
     AddLineTxt.delegate=self;
     AddLineTxt.borderStyle=UITextBorderStyleNone;
@@ -197,11 +197,11 @@
     [mainView addSubview:AddLineTxt];
     
     UIImageView *LineImg8=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg8.frame=CGRectMake(10,258, self.view.frame.size.width, 2/2);
+    LineImg8.frame=CGRectMake((self.view.frame.size.width-299.5)/2,258, 599/2, 2/2);
     [mainView addSubview:LineImg8];
     
     AddLine2Txt=[[UITextField alloc] init];
-    AddLine2Txt.frame=CGRectMake(15,260, self.view.frame.size.width-20, 25);
+    AddLine2Txt.frame=CGRectMake(15,260, 280, 25);
     AddLine2Txt.tag=6;
     AddLine2Txt.delegate=self;
     AddLine2Txt.borderStyle=UITextBorderStyleNone;
@@ -217,12 +217,12 @@
     [mainView addSubview:AddLine2Txt];
     
     UIImageView *LineImg9=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg9.frame=CGRectMake(10,288, self.view.frame.size.width, 2/2);
+    LineImg9.frame=CGRectMake((self.view.frame.size.width-299.5)/2,288, 599/2, 2/2);
     [mainView addSubview:LineImg9];
 
 
     CountryTxt=[[UITextField alloc] init];
-    CountryTxt.frame=CGRectMake(15,290, self.view.frame.size.width-20, 25);
+    CountryTxt.frame=CGRectMake(15,290, 280, 25);
     CountryTxt.tag=7;
     CountryTxt.delegate=self;
     CountryTxt.borderStyle=UITextBorderStyleNone;
@@ -238,7 +238,7 @@
     [mainView addSubview:CountryTxt];
     
     CountryBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    CountryBtn.frame=CGRectMake(self.view.frame.size.width-20,300, 21/2, 13/2);
+    CountryBtn.frame=CGRectMake((self.view.frame.size.width+280)/2,300, 21/2, 13/2);
     [CountryBtn setBackgroundColor:[UIColor redColor]];
     UIImage *Image = [UIImage imageNamed:@"arrow_down@2x.png"];
     [CountryBtn setBackgroundImage:Image forState:UIControlStateNormal];
@@ -251,12 +251,12 @@
     
     
     UIImageView *LineImg4=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg4.frame=CGRectMake(10,318, self.view.frame.size.width, 2/2);
+    LineImg4.frame=CGRectMake((self.view.frame.size.width-299.5)/2,318, 599/2, 2/2);
     [mainView addSubview:LineImg4];
     
     
     StateTxt=[[UITextField alloc] init];
-    StateTxt.frame=CGRectMake(15,320, self.view.frame.size.width-20, 25);
+    StateTxt.frame=CGRectMake(15,320, 280, 25);
     StateTxt.tag=8;
     StateTxt.delegate=self;
     StateTxt.borderStyle=UITextBorderStyleNone;
@@ -273,7 +273,7 @@
     [mainView addSubview:StateTxt];
     
     StateBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    StateBtn.frame=CGRectMake(self.view.frame.size.width-20,330, 21/2, 13/2);
+    StateBtn.frame=CGRectMake((self.view.frame.size.width+280)/2,330, 21/2, 13/2);
     [StateBtn setBackgroundColor:[UIColor redColor]];
     UIImage *regImage = [UIImage imageNamed:@"arrow_down@2x.png"];
     [StateBtn setBackgroundImage:regImage forState:UIControlStateNormal];
@@ -282,12 +282,12 @@
     [mainView addSubview:StateBtn];
     
     UIImageView *LineImg5=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg5.frame=CGRectMake(10,348, self.view.frame.size.width, 2/2);
+    LineImg5.frame=CGRectMake((self.view.frame.size.width-299.5)/2,348, 599/2, 2/2);
     [mainView addSubview:LineImg5];
     
     
     CityTxt=[[UITextField alloc] init];
-    CityTxt.frame=CGRectMake(15,350, self.view.frame.size.width-20, 25);
+    CityTxt.frame=CGRectMake(15,350, 280, 25);
     CityTxt.tag=9;
     CityTxt.delegate=self;
     CityTxt.borderStyle=UITextBorderStyleNone;
@@ -303,7 +303,7 @@
     [mainView addSubview:CityTxt];
     
     CityBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    CityBtn.frame=CGRectMake(self.view.frame.size.width-20,360, 21/2, 13/2);
+    CityBtn.frame=CGRectMake((self.view.frame.size.width+280)/2,360, 21/2, 13/2);
     [CityBtn setBackgroundColor:[UIColor redColor]];
     UIImage *arrowImage = [UIImage imageNamed:@"arrow_down@2x.png"];
     [CityBtn setBackgroundImage:arrowImage forState:UIControlStateNormal];
@@ -313,12 +313,12 @@
 
     
     UIImageView *LineImg6=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg6.frame=CGRectMake(10,378, self.view.frame.size.width, 2/2);
+    LineImg6.frame=CGRectMake((self.view.frame.size.width-299.5)/2,378, 599/2, 2/2);
     [mainView addSubview:LineImg6];
     
     
     CodeTxt=[[UITextField alloc] init];
-    CodeTxt.frame=CGRectMake(15,380, self.view.frame.size.width-20, 25);
+    CodeTxt.frame=CGRectMake(15,380, 280, 25);
     CodeTxt.tag=10;
     CodeTxt.delegate=self;
     CodeTxt.borderStyle=UITextBorderStyleNone;
@@ -335,12 +335,12 @@
     
     
     UIImageView *LineImg7=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg7.frame=CGRectMake(10,408, self.view.frame.size.width, 2/2);
+    LineImg7.frame=CGRectMake((self.view.frame.size.width-299.5)/2,408, 599/2, 2/2);
     [mainView addSubview:LineImg7];
 
     
     TelephoneTxt=[[UITextField alloc] init];
-    TelephoneTxt.frame=CGRectMake(15,410, self.view.frame.size.width-20, 25);
+    TelephoneTxt.frame=CGRectMake(15,410, 280, 25);
     TelephoneTxt.tag=11;
     TelephoneTxt.delegate=self;
     TelephoneTxt.borderStyle=UITextBorderStyleNone;
@@ -356,13 +356,13 @@
     [mainView addSubview:TelephoneTxt];
 
     UIImageView *LineImg10=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divider@2x.png"]];
-    LineImg10.frame=CGRectMake(10,438, self.view.frame.size.width, 2/2);
+    LineImg10.frame=CGRectMake((self.view.frame.size.width-299.5)/2,438, 599/2, 2/2);
     [mainView addSubview:LineImg10];
     
 
     
     UIImageView *AddToCart=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddCard@2x.png"]];
-    AddToCart.frame=CGRectMake(10,460, self.view.frame.size.width-20, 86/2);
+    AddToCart.frame=CGRectMake((self.view.frame.size.width-260.5)/2,460, 521/2, 86/2);
     AddToCart.userInteractionEnabled=YES;
     
     AddToCartBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];

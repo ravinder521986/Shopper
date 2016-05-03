@@ -16,285 +16,130 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor=[UIColor whiteColor];
+    countries=[[NSMutableArray alloc]init];
+    [countries addObject:@"SELECT PAYMENT MATHOD"];
+    [countries addObject:@"ADD PAYMENT MATHOD"];
+    
+    
+    transactionTbl=[[UITableView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-320)/2, 64, self.view.frame.size.width, self.view.frame.size.height-114) style:UITableViewStylePlain];
+    transactionTbl.showsVerticalScrollIndicator=YES;
+    transactionTbl.showsHorizontalScrollIndicator=NO;
+    transactionTbl.showsVerticalScrollIndicator=NO;
+    transactionTbl.delegate=self;
+    transactionTbl.dataSource=self;
+    [transactionTbl setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:transactionTbl];
 
-    
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    delObj=(AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    
-    
     // Do any additional setup after loading the view.
 }
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    UIView *customView1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
-    customView1.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"menu_bar_bg@2x.png"]];
-    
-    UIButton *leftBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.adjustsImageWhenHighlighted=NO;
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"BackBtn@2x.png"] forState:UIControlStateNormal];
-    leftBtn.frame=CGRectMake(10, 30, 24/2, 40/2);
-    [leftBtn addTarget:self action:@selector(leftSlider) forControlEvents:UIControlEventTouchUpInside];
-    [customView1 addSubview:leftBtn];
-    
-    UIButton *plusBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    plusBtn.adjustsImageWhenHighlighted=NO;
-    [plusBtn setTitle:@"EDIT" forState:UIControlStateNormal];
-    plusBtn.frame=CGRectMake(self.view.frame.size.width-60, 30, 60, 31);
-    [plusBtn addTarget:self action:@selector(DoneSlider) forControlEvents:UIControlEventTouchUpInside];
-    [customView1 addSubview:plusBtn];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
     
     
-    
-    UILabel *reallbl=[[UILabel alloc] initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, 20)];
-    reallbl.text=@"Shipping Method";
-    reallbl.textAlignment=NSTextAlignmentCenter;
-    reallbl.font=[UIFont fontWithName:@"Roboto-Regular" size:15];
-    reallbl.textColor=[UIColor whiteColor];
-    [customView1 addSubview:reallbl];
-    [self.view addSubview:customView1];
-    
-    
-    ShippingTbl=[[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-114) style:UITableViewStylePlain];
-    ShippingTbl.showsVerticalScrollIndicator=YES;
-    ShippingTbl.showsHorizontalScrollIndicator=NO;
-    ShippingTbl.showsVerticalScrollIndicator=NO;
-    ShippingTbl.dataSource=self;
-    ShippingTbl.delegate=self;
-    [self.view addSubview:ShippingTbl];
-    
-    
-}
-
--(void)buttonPressed{
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebCategoryResponse:) name:@"" object:nil];
-    NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
-    [delObj PostWebServer:dict type:@""];
-    
-    
-}
-
--(void)WebCategoryResponse:(NSNotification *)dictionary{
-    
-    
-    NSDictionary *dict=[dictionary userInfo];
-    
-    ShippingTbl.dataSource=self;
-    ShippingTbl.delegate=self;
-    [ShippingTbl reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    
+    return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 150;
+}
 
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
-    return 7;
-    
-    
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row==0) {
-        
-        return 38.5;
-        
-    }
-    else if (indexPath.row==1){
-        
-        return 70;
-        
-    }
-    else if (indexPath.row==2){
-        
-        return 70;
-        
-    }
-    else if (indexPath.row==3){
-        
-        
-        return 70;
-    }
-    else if (indexPath.row==4){
-        
-        return 38.5;
-    }
-    else if (indexPath.row==5){
-        
-        return 50;
-    }
-    else if (indexPath.row==6){
-        
-        return 50;
-    }
-    else{
-        
-        return 0;
-    }
-    
-    
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        
-    }
-    
-    if (indexPath.row==0) {
-        
+    if (section==0) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,250)];
         
         UIImageView *FormaIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Round_Black@2x.png"]];
-        FormaIcon.frame=CGRectMake(0,0, self.view.frame.size.width, 77/2);
+        FormaIcon.frame=CGRectMake((self.view.frame.size.width-320)/2,5, 640/2, 77/2);
         [FormaIcon setBackgroundColor:[UIColor clearColor]];
-        [cell.contentView addSubview:FormaIcon];
-        
-        UILabel *Websitelbl=[[UILabel alloc] initWithFrame:CGRectMake(10,15, self.view.frame.size.width, 38.5)];
-        Websitelbl.font = [UIFont fontWithName:@"Arial" size:12];
+        [headerView addSubview:FormaIcon];
+
+        UILabel *Websitelbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-300)/2,15, 100, 30)];
+        Websitelbl.font = [UIFont fontWithName:@"Arial" size:13];
         Websitelbl.text=@"SELECT PAYMENT MATHOD";
         Websitelbl.textAlignment=NSTextAlignmentCenter;
         Websitelbl.textColor=[UIColor whiteColor];
         Websitelbl.numberOfLines = 1;
         [Websitelbl sizeToFit];
-        [cell.contentView addSubview:Websitelbl];
+        [headerView addSubview:Websitelbl];
         
-
+         return headerView;
     }
-    else if (indexPath.row==1){
-        
-        UIImageView *PaypalImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paypal@2x.png"]];
-        PaypalImg.frame=CGRectMake((self.view.frame.size.width-320)/2,23, 184/2, 48/2);
-        [PaypalImg setBackgroundColor:[UIColor greenColor]];
-        [cell.contentView addSubview:PaypalImg];
-        
-        
-    }
-    else if (indexPath.row==2){
-        
-        UIImageView *MasterCardImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MasterCard@2x.png"]];
-        MasterCardImg.frame=CGRectMake((self.view.frame.size.width-320)/2,14, 135/2, 85/2);
-        [MasterCardImg setBackgroundColor:[UIColor greenColor]];
-        [cell.contentView addSubview:MasterCardImg];
-        
-       
-
-        
-    }
-    else if (indexPath.row==3){
-        
-        UIImageView *VisaImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"visa.png"]];
-        VisaImg.frame=CGRectMake((self.view.frame.size.width-320)/2,14, 135/2, 85/2);
-        [VisaImg setBackgroundColor:[UIColor greenColor]];
-        [cell.contentView addSubview:VisaImg];
-        
-        
-    }
-    else if (indexPath.row==4){
-        
-        
+    else{
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,250)];
         
         UIImageView *FormaIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Round_Black@2x.png"]];
-        FormaIcon.frame=CGRectMake(0,0, self.view.frame.size.width, 77/2);
-        [FormaIcon setBackgroundColor:[UIColor clearColor]];
-        [cell.contentView addSubview:FormaIcon];
+        FormaIcon.frame=CGRectMake((self.view.frame.size.width-320)/2,5, 640/2, 77/2);
+        [FormaIcon setBackgroundColor:[UIColor greenColor]];
+        [headerView addSubview:FormaIcon];
         
-        UILabel *Websitelbl=[[UILabel alloc] initWithFrame:CGRectMake(10,15, self.view.frame.size.width, 38.5)];
-        Websitelbl.font = [UIFont fontWithName:@"Arial" size:12];
+        UILabel *Websitelbl=[[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-300)/2,15, 100, 30)];
+        Websitelbl.font = [UIFont fontWithName:@"Arial" size:13];
         Websitelbl.text=@"ADD PAYMENT MATHOD";
         Websitelbl.textAlignment=NSTextAlignmentCenter;
         Websitelbl.textColor=[UIColor whiteColor];
         Websitelbl.numberOfLines = 1;
         [Websitelbl sizeToFit];
+        [headerView addSubview:Websitelbl];
+        
+        
+        return headerView;
+    }
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    }
+    
+    
+    if (indexPath.section==0) {
+        
+        UIImageView *PaypalImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paypal@2x.png"]];
+        PaypalImg.frame=CGRectMake((self.view.frame.size.width-320)/2,0, 184/2, 48/2);
+        [PaypalImg setBackgroundColor:[UIColor greenColor]];
+        [cell.contentView addSubview:PaypalImg];
+        
+        UIImageView *MasterCardImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MasterCard@2x.png"]];
+        MasterCardImg.frame=CGRectMake((self.view.frame.size.width-320)/2,30, 135/2, 85/2);
+        [MasterCardImg setBackgroundColor:[UIColor greenColor]];
+        [cell.contentView addSubview:MasterCardImg];
+        
+        UIImageView *VisaImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"visa.png"]];
+        VisaImg.frame=CGRectMake((self.view.frame.size.width-320)/2,80, 135/2, 85/2);
+        [VisaImg setBackgroundColor:[UIColor greenColor]];
+        [cell.contentView addSubview:VisaImg];
+        
+
+       
+    }
+    else{
+        
+        
+        UILabel *Websitelbl=[[UILabel alloc] initWithFrame:CGRectMake(10,5, 100, 35)];
+        Websitelbl.font = [UIFont fontWithName:@"Arial" size:13];
+        Websitelbl.text=@"add credit card";
+        Websitelbl.textAlignment=NSTextAlignmentCenter;
+        Websitelbl.textColor=[UIColor whiteColor];
+        Websitelbl.numberOfLines = 1;
+        [Websitelbl sizeToFit];
         [cell.contentView addSubview:Websitelbl];
-
-
     }
-    else if (indexPath.row==5){
-        
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20, 30)];
-        Txtlbl.backgroundColor=[UIColor clearColor];
-        Txtlbl.text=@"add credit card";
-        Txtlbl.numberOfLines=1;
-        Txtlbl.textAlignment=NSTextAlignmentLeft;
-        Txtlbl.font=[UIFont fontWithName:@"Roboto-Regular" size:15];
-        Txtlbl.textColor=[UIColor blackColor];
-        [Txtlbl sizeToFit];
-        [cell.contentView addSubview:Txtlbl];
-        
-        
-        UIImageView *PiKImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ArrowBtn@2x.png"]];
-        PiKImg.frame=CGRectMake(self.view.frame.size.width-10, 19.5, 13/2,21/2);
-        [cell.contentView addSubview:PiKImg];
-        
-    }
-    else if (indexPath.row==6){
-        
-        
-        UILabel *Txtlbl=[[UILabel alloc] initWithFrame:CGRectMake(10,10, self.view.frame.size.width-20, 30)];
-        Txtlbl.backgroundColor=[UIColor clearColor];
-        Txtlbl.text=@"VISA Checkout";
-        Txtlbl.numberOfLines=1;
-        Txtlbl.textAlignment=NSTextAlignmentLeft;
-        Txtlbl.font=[UIFont fontWithName:@"Roboto-Regular" size:15];
-        Txtlbl.textColor=[UIColor blackColor];
-        [Txtlbl sizeToFit];
-        [cell.contentView addSubview:Txtlbl];
-        
-        
-        UIImageView *PiKImg=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ArrowBtn@2x.png"]];
-        PiKImg.frame=CGRectMake(self.view.frame.size.width-10, 19.5, 13/2,21/2);
-        [cell.contentView addSubview:PiKImg];
-        
-        
-        
-        
-    }
-    return cell;
     
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row==0) {
-        
-    }
-    else if (indexPath.row==1){
-        
-        
-    }
-    else if (indexPath.row==2){
-        
-    }
-    else if (indexPath.row==3){
-        
-        
-    }
-    else if (indexPath.row==4){
-
-        
-    }
-    else if (indexPath.row==5){
+   return cell;
     
-    }
-
-    else if (indexPath.row==6){
-        
-    }
-
-}
-
--(void)leftSlider{
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -302,14 +147,13 @@
 }
 
 /*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
-

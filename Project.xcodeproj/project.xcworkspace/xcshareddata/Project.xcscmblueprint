@@ -1,28 +1,20 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6F489DCF0596FC7FDE6CDC40A759081019AEB878",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
     "fd679b2a-bcc8-4358-99bb-6f2fc49b16d5++9171" : {
 
     }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "6F489DCF0596FC7FDE6CDC40A759081019AEB878" : 0,
     "fd679b2a-bcc8-4358-99bb-6f2fc49b16d5++9171" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "71C561F8-985F-4414-96F2-041DA8B65984",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "6F489DCF0596FC7FDE6CDC40A759081019AEB878" : "Shopper\/",
     "fd679b2a-bcc8-4358-99bb-6f2fc49b16d5++9171" : "Project\/ASIHTTPRequest\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Project",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Project.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ravinder521986\/Shopper.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6F489DCF0596FC7FDE6CDC40A759081019AEB878"
-    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/172.16.144.1:1028",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",

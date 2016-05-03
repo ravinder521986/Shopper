@@ -166,7 +166,7 @@
     SegmentChangeView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:SegmentChangeView];
     
-       
+      /*
     UIImageView *AddToCart=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddCard@2x.png"]];
     AddToCart.frame=CGRectMake((self.view.frame.size.width-260.5)/2,self.view.frame.size.height-70, 521/2, 86/2);
     AddToCart.userInteractionEnabled=YES;
@@ -180,6 +180,26 @@
     [AddToCart addSubview:SubmitBtn];
     
     [self.view addSubview:AddToCart];
+    
+    */
+    
+    UIImageView *AddToCart=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddCard@2x.png"]];
+    AddToCart.frame=CGRectMake(30,self.view.frame.size.height-90, self.view.frame.size.width-60, 86/2);
+    AddToCart.userInteractionEnabled=YES;
+    
+    SubmitBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    SubmitBtn.frame=CGRectMake(50,0, self.view.frame.size.width-150, 43);
+    [SubmitBtn setBackgroundColor:[UIColor clearColor]];
+    [SubmitBtn setTitle:@"SUBMIT" forState:UIControlStateNormal];
+    [SubmitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [SubmitBtn addTarget:self action:@selector(registerBtn) forControlEvents:UIControlEventTouchUpInside];
+    [AddToCart addSubview:SubmitBtn];
+    
+    [self.view addSubview:AddToCart];
+
+    
+    
+    
 
 
 }
@@ -430,6 +450,8 @@
     if ([self loginValidation]) {
         
         
+        [delObj showView];
+        
          NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
         [dict setValue:emailTextfield.text forKey:@"email"];
         [dict setValue:passwordTextfield.text forKey:@"password"];
@@ -472,7 +494,7 @@
     NSDictionary *dict=[dictionary userInfo];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"Register" object:nil];
     
-    
+    [delObj hideView];
     
     if ([[dict valueForKey:@"statusCode"]isEqualToNumber:[NSNumber numberWithInt:201]]) {
         
